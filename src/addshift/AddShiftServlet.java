@@ -29,7 +29,7 @@ public class AddShiftServlet extends HttpServlet{
 		int staffAllocated = Integer.valueOf(request.getParameter("staffAllocated"));
 		int status = Integer.valueOf(request.getParameter("status"));
 		String remark = request.getParameter("remark");
-		Date nowdate=new Date();
+		Date nowdate =new Date();
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date startTime = Timestamp.valueOf(simpleDate.format(nowdate));
 		Date endTime = Timestamp.valueOf(simpleDate.format(nowdate));
