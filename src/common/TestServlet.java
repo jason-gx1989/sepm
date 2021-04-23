@@ -32,13 +32,28 @@ public class TestServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		service.add(email, password);
-		ShiftManager s = service.find(email);
+//		String email = request.getParameter("email");
+//		String password = request.getParameter("password");
+//		service.add(email, password);
+//		ShiftManager s = service.find(email);
+//
+//		request.setAttribute("id", s.getId());
 
-		request.setAttribute("id", s.getId());
-		request.getRequestDispatcher("/test.jsp").forward(request, response);
+		String userType = request.getParameter("userType");
+
+		// manager
+		if ("1".equals(userType)) {
+
+			request.getRequestDispatcher("/shiftManagerindex.jsp").forward(request, response);
+
+		}
+
+		// staff
+		if ("2".equals(userType)) {
+
+			request.getRequestDispatcher("/test.jsp").forward(request, response);
+
+		}
 
 	}
 }

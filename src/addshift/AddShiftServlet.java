@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/AddShiftServlet")
-public class AddShiftServlet extends HttpServlet{
+public class AddShiftServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,12 +29,15 @@ public class AddShiftServlet extends HttpServlet{
 		int staffAllocated = Integer.valueOf(request.getParameter("staffAllocated"));
 		int status = Integer.valueOf(request.getParameter("status"));
 		String remark = request.getParameter("remark");
-		Date nowdate =new Date();
+		Date nowdate = new Date();
 		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date startTime = Timestamp.valueOf(simpleDate.format(nowdate));
-		Date endTime = Timestamp.valueOf(simpleDate.format(nowdate));
-		service.addShift(startTime, endTime , duration, location, staffAllocated, status, remark);
+		Date startTime = Timestamp.valueOf(simpleDate.format(nowdate));// TODO 把这个时间改成从页面上输入。
+		Date endTime = Timestamp.valueOf(simpleDate.format(nowdate));// TODO 把这个时间改成从页面上输入。
+		service.addShift(startTime, endTime, duration, location, staffAllocated, status, remark);
 		System.out.println(duration + location + staffAllocated + status + remark);
+		
+		
+		// TODO 跳转到分配shift的servlet。
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 	}

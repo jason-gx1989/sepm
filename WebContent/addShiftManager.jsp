@@ -34,7 +34,7 @@
             </tr>
             <tr>
                 <td colspan="2" style="width: 100px; height: 50px;">
-                    <button type="button" name="signIn" onclick="signInClick()">Sign In</button>
+                    <button type="button" name="signIn" onclick="signInClick()">Add Shift Manager</button>
                 </td>
             </tr>
 

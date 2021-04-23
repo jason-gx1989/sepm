@@ -27,35 +27,37 @@
 </style>
 </head>
 <body>
-	<%-- 	<%
+	<%
 	Integer id = (Integer) request.getAttribute("id");
 		if (null == id) {
 			id = 0;
 		}
-	%> --%>
+	%>
 
 	<div class="main" style="margin-top: 200px;">
 		<form action="TestServlet" method="post">
 			<table border="0" align="center">
 
-				<!-- <tr>
-					<td align="right">email:</td>
-					<td><input type="text" name="email" /></td>
+				<tr>
+					<td><a href="AddShift.jsp">Add Shift</a></td>
 				</tr>
 				<tr>
-					<td align="right">password:</td>
-					<td><input type="text" name="password" /></td>
-				</tr> -->
-
-
-				<input type="text" name="userType" />
+					<td><a href="addShiftManager.jsp">Add Shift Manager</a></td>
+				</tr>
 				<tr>
-					<td colspan="2" style="width: 100px; height: 50px;"><span
-						id="msg"><%-- <%=id%> --%></span> <input type="submit" value="login"
-						style="width: 100px" /></td>
+					<td><a href="addStaff.jsp">Add Staff</a></td>
+				</tr>
+				<tr>
+					<td><a href="allocateShift.jsp">Allocate Shift</a></td>
+				</tr>
+				<tr>
+					<td><a href="changeLimit.jsp">Change Limit</a></td>
 				</tr>
 
 			</table>
+
+
+
 		</form>
 
 	</div>
