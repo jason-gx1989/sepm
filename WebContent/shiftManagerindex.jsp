@@ -51,7 +51,7 @@
 					<td><a href="allocateShift.jsp">Allocate Shift</a></td>
 				</tr>
 				<tr>
-					<td><a href="changeLimit.jsp">Change Limit</a></td>
+					<td><a href="GetStaffServlet">Change Limit</a></td>
 				</tr>
 
 			</table>
