@@ -39,7 +39,7 @@ public class AddStaffServlet extends HttpServlet {
 
         staffService.createStaff(fullName,password,mobileNumber,email,preferredName, homeAddress);
         
-		request.getRequestDispatcher("/test.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 
     }
 }

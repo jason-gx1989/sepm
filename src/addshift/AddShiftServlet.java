@@ -35,7 +35,7 @@ public class AddShiftServlet extends HttpServlet{
 		Date endTime = Timestamp.valueOf(simpleDate.format(nowdate));
 		service.addShift(startTime, endTime , duration, location, staffAllocated, status, remark);
 		System.out.println(duration + location + staffAllocated + status + remark);
-		request.getRequestDispatcher("/test.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 	}
 }
