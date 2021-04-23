@@ -38,8 +38,7 @@ public class AddShiftManagerServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         shiftManagerService.addShiftManager(fullName, password, mobileNumber, email);
-
-		request.getRequestDispatcher("/test.jsp").forward(request, response);
+		request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 
     }
