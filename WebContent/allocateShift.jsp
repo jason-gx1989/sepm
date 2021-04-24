@@ -17,7 +17,6 @@
 	color: red;
 	font-wight: bold;
 }
-
 .main {
 	text-align: center;
 	background-color: #fff;
@@ -34,18 +33,8 @@
 </style>
 </head>
 <body>
-	<%
-	//TODO 跟jsp交互的永远都只有servlet，禁止jsp直接访问service层，否则项目结构混乱。所以请把参数用servlet返回。
-		AllocateShiftService service = new AllocateShiftService();
-		request.setAttribute("shiftList", service.getShiftList());
-		ChangeLimitService service2 = new ChangeLimitService();
-		request.setAttribute("staffList", service2.getStaffList());
-	%>
 
 
-	<%
-	//TODO 我把两个list交换了一下位置，以便更好的展示功能。
-	%>
 	<div class="main" style="margin-top: 200px;">
 
 		<table border="0" align="center">
@@ -69,19 +58,22 @@
 			</c:forEach>
 
 		</table>
+		<br>		
+		<br>		
+		<br>
 
-
-
-		<table border="0" align="center" style="margin-top: 100px;">
-			<tr align="center">Available shifts to be allocated
-			</tr>
+<div align="center">Available shifts to be allocated
+</div>
+		<table  align="center" >			
 			<tr>
-				<%
-				//TODO 这里把shift中每一个字段都填上，虽然目前的情况下功能实现了，作业也不需要做的很漂亮，但是至少要让人一眼看出来列表展示的是什么。
-				%>
 				<td align="center">ShiftID</td>
 				<td align="center">allocatedStaffID</td>
-				<td align="center"></td>
+				<td align="center">startTime</td>
+				<td align="center">endTime</td>
+				<td align="center">duration</td>
+				<td align="center">location</td>
+				<td align="center">status</td>
+				<td align="center">remark</td>
 			</tr>
 
 			<!-- Print data -->
@@ -92,12 +84,17 @@
 						<input type="hidden" name="id" value="${shift.id}" />
 						<td><input type="text" name="staffAllocated"
 							value="${shift.staffAllocated}" /></td>
+						<td align="center">${shift.startTime}</td>
+						<td align="center">${shift.endTime}</td>
+						<td align="center">${shift.duration}</td>
+						<td align="center">${shift.location}</td>
+						<td align="center">${shift.status}</td>
+						<td align="center">${shift.remark}</td>
 						<td align="center"><input type="submit" value="allocate" /></td>
 					</tr>
 				</form>
 			</c:forEach>
 		</table>
-		<br>
 	</div>
 
 </body>
