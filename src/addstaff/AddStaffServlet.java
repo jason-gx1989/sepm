@@ -10,33 +10,41 @@ import java.io.IOException;
 /**
  * Staff Controller operation class
  */
+
 @WebServlet("/AddStaffServlet")
 public class AddStaffServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	StaffService staffService = new StaffService();
+    StaffService staffService = new StaffService();
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    @Override
+    @SuppressWarnings("unused")
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-		String fullName = request.getParameter("fullName");
-		String mobileNumber = request.getParameter("mobileNumber");
-		String email = request.getParameter("email");
-		String preferredName = request.getParameter("preferredName");
-		String homeAddress = request.getParameter("homeAddress");
-		String password = request.getParameter("password");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		int i = staffService.createStaff(fullName, password, mobileNumber, email, preferredName, homeAddress);
+        String fullName = request.getParameter("fullName");
+        String mobileNumber = request.getParameter("mobileNumber");
+        String email = request.getParameter("email");
+        String preferredName = request.getParameter("preferredName");
+        String homeAddress = request.getParameter("homeAddress");
+        String password = request.getParameter("password");
 
-		if (i != 1) {
-			request.setAttribute("result", "Add ERROR");
-		} else {
-			request.setAttribute("result", "Add SUCCESS");
-		}
+        int i = staffService.createStaff(fullName, password, mobileNumber, email, preferredName, homeAddress);
 
-		request.getRequestDispatcher("/addStaff.jsp").forward(request, response);
+        if (i != 1){
+            request.setAttribute("result", "Add ERROR");
+        }else {
+            request.setAttribute("result", "Add SUCCESS");
+        }
 
-	}
+        request.getRequestDispatcher("/addStaff.jsp").forward(request, response);
+
+    }
 }
