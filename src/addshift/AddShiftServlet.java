@@ -31,13 +31,17 @@ public class AddShiftServlet extends HttpServlet {
 
 		String result = service.addShift(startTime, endTime, duration, location, staffAllocated, remark);
 		if ("01".equals(result)) {
-			// TODO
+			String s = "Invalid Time Format"; 
+			request.setAttribute("s", s);
+			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);// TODO
 		}
 		if ("02".equals(result)) {
-			// TODO
+			String s = "Invalid Time Format"; 
+			request.setAttribute("s", s);
+			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);// TODO
 		}
 
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/AllocateShift").forward(request, response);
 
 	}
 }
