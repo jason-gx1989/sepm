@@ -18,8 +18,6 @@ public class AllocateShiftServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		//TODO 功能缺失：1.需要从数据库读取staff和shift两个list
-		//TODO 功能缺失：2.jsp中只见到一个list，还差一个list和allocate功能。
 		
 		// Read field from view
 		String id = request.getParameter("id");

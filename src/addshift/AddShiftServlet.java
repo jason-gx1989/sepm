@@ -26,7 +26,7 @@ public class AddShiftServlet extends HttpServlet {
 //		Date endTime = Date.valueOf(request.getParameter("endTime"));
 		double duration = Double.valueOf(request.getParameter("duration"));
 		String location = request.getParameter("location");
-		int staffAllocated = Integer.valueOf(request.getParameter("staffAllocated"));
+		int staffAllocated = Integer.valueOf(request.getParameter("staffAllocated"));// TODO 初始状态下这个字段的值应该是空的。
 		int status = Integer.valueOf(request.getParameter("status"));
 		String remark = request.getParameter("remark");
 		Date nowdate = new Date();
@@ -35,8 +35,7 @@ public class AddShiftServlet extends HttpServlet {
 		Date endTime = Timestamp.valueOf(simpleDate.format(nowdate));// TODO 把这个时间改成从页面上输入。
 		service.addShift(startTime, endTime, duration, location, staffAllocated, status, remark);
 		System.out.println(duration + location + staffAllocated + status + remark);
-		
-		
+
 		// TODO 跳转到分配shift的servlet。
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 
