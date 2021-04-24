@@ -22,21 +22,21 @@ public class AddShiftServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-//		Date startTime = Date.valueOf(request.getParameter("startTime"));
-//		Date endTime = Date.valueOf(request.getParameter("endTime"));
-		double duration = Double.valueOf(request.getParameter("duration"));
+		String duration = request.getParameter("duration");
 		String location = request.getParameter("location");
-		int staffAllocated = Integer.valueOf(request.getParameter("staffAllocated"));// TODO 初始状态下这个字段的值应该是空的。
-		int status = Integer.valueOf(request.getParameter("status"));
+		String staffAllocated = request.getParameter("staffAllocated");
 		String remark = request.getParameter("remark");
-		Date nowdate = new Date();
-		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date startTime = Timestamp.valueOf(simpleDate.format(nowdate));// TODO 把这个时间改成从页面上输入。
-		Date endTime = Timestamp.valueOf(simpleDate.format(nowdate));// TODO 把这个时间改成从页面上输入。
-		service.addShift(startTime, endTime, duration, location, staffAllocated, status, remark);
-		System.out.println(duration + location + staffAllocated + status + remark);
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
 
-		// TODO 跳转到分配shift的servlet。
+		String result = service.addShift(startTime, endTime, duration, location, staffAllocated, remark);
+		if ("01".equals(result)) {
+			// TODO
+		}
+		if ("02".equals(result)) {
+			// TODO
+		}
+
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 
 	}
