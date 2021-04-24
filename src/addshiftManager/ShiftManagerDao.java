@@ -1,6 +1,7 @@
 package addshiftManager;
 
 import common.utils.DBExecuteUtils;
+import common.utils.Utils;
 import entity.ShiftManager;
 
 
@@ -17,10 +18,9 @@ public class ShiftManagerDao {
     public int addShiftManager(ShiftManager shiftManager){
 
 
-        String sql = "INSERT INTO shiftManager(id, fullName, password, isPasswordUpdated, mobileNumber, email, createTime) VALUES "
-                + "('" + shiftManager.getId() + "','" + shiftManager.getFullName() + "','" + shiftManager.getPassword() + "','" + shiftManager.getIsPasswordUpdated() 
-                + "','" + shiftManager.getMobileNumber() + "','" + shiftManager.getEmail() + "','" + shiftManager.getCreateTIme() +"')";
-
+    	String sql = "INSERT INTO shiftManager(fullName, password, isPasswordUpdated, mobileNumber, email, createTime) VALUES "
+                + "('"  + shiftManager.getFullName() + "','" + shiftManager.getPassword() + "','" + shiftManager.getIsPasswordUpdated()
+                + "','" + shiftManager.getMobileNumber() + "','" + shiftManager.getEmail() + "','" + Utils.getCurrentTime() +"')";
         return DBExecuteUtils.update(sql);
 
     }

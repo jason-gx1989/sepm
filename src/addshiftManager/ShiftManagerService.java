@@ -14,13 +14,14 @@ public class ShiftManagerService {
 	public int addShiftManager(String fullName, String password, String mobileNumber, String email) {
 
 		ShiftManager shiftManager = new ShiftManager();
-		shiftManager.setId(Math.abs((int) System.currentTimeMillis()));
+//		shiftManager.setId(Math.abs((int) System.currentTimeMillis()));
 		shiftManager.setFullName(fullName);
 		shiftManager.setPassword(password);
 		shiftManager.setIsPasswordUpdated(0);
 		shiftManager.setMobileNumber(mobileNumber);
 		shiftManager.setEmail(email);
-		shiftManager.setCreateTIme(new Date(System.currentTimeMillis()));// TODO 这个时间至少需要精确到小时，因为后面涉及到计算。
+		shiftManager.setCreateTIme(new Date(System.currentTimeMillis()));
+		
 		return shiftManagerDao.addShiftManager(shiftManager);
 
 	}

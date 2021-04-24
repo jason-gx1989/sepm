@@ -1,6 +1,7 @@
 package addstaff;
 
 import common.utils.DBExecuteUtils;
+import common.utils.Utils;
 import entity.Staff;
 
 /**
@@ -14,11 +15,12 @@ public class StaffDao {
      * @return Rows affected by update Operation, -1 for failure, 1 for success
      */
     public int createStaff(Staff staff){
-        String sql = "INSERT INTO Staff(id, fullName, password, isPasswordUpdated, mobileNumber, email, createTime, " +
-                "workHourLimit, preferredName, homeAddress) VALUES " + "('" + staff.getId() + "','" + staff.getFullName()
+    	String sql = "INSERT INTO Staff(fullName, password, isPasswordUpdated, mobileNumber, email, createTime, " +
+                "workHourLimit, preferredName, homeAddress) VALUES " + "('"+ staff.getFullName()
                 + "','" + staff.getPassword() + "','" + staff.getIsPasswordUpdated() + "','" + staff.getMobileNumber()
-                + "','" + staff.getEmail() + "','" + staff.getCreateTIme() + "','" + staff.getWorkHourLimit() + "','"
+                + "','" + staff.getEmail() + "','" + Utils.getCurrentTime() +  "','" + staff.getWorkHourLimit() + "','"
                 + staff.getPreferredName() + "','" + staff.getHomeAddress() +"')";
+
 
         return DBExecuteUtils.update(sql);
 

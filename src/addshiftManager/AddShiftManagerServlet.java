@@ -14,23 +14,34 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddShiftManagerServlet")
 public class AddShiftManagerServlet extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	ShiftManagerService shiftManagerService = new ShiftManagerService();
+    ShiftManagerService shiftManagerService = new ShiftManagerService(); 
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+    @Override
+    @SuppressWarnings("unused")
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-		String fullName = request.getParameter("fullName");
-		String mobileNumber = request.getParameter("mobileNumber");
-		String email = request.getParameter("email");
-		String password = request.getParameter("password");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		shiftManagerService.addShiftManager(fullName, password, mobileNumber, email);
+        String fullName = request.getParameter("fullName");
+        String mobileNumber = request.getParameter("mobileNumber");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-		// TODO 因为后续开发中会涉及到在本页面读取所有的ShiftManager，所以请跳转回本页面，向页面上输出“添加成功”之类的字样，以表示添加成功。
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+        int i = shiftManagerService.addShiftManager(fullName, password, mobileNumber, email);
 
+        if (i != 1){
+            request.setAttribute("result", "Add ERROR");
+        }else {
+            request.setAttribute("result", "Add SUCCESS");
+        }
+
+        request.getRequestDispatcher("/addShiftManager.jsp").forward(request, response);
 	}
 }

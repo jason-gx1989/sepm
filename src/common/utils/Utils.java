@@ -1,7 +1,22 @@
 package common.utils;
 
-public class Utils {
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
+public class Utils {
+	
+
+	public static String getCurrentTime(){
+
+		Date date = new Date(System.currentTimeMillis());
+		SimpleDateFormat  sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String res = sdf.format(date);
+		return res;
+	}
+
+	
 	public static boolean beginWith(String tempString, String firstLetter) {
 
 		String s = tempString.substring(0, 1);

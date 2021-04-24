@@ -9,6 +9,18 @@
 </head>
 <body>
 
+<%
+    request.setCharacterEncoding("UTF-8");
+    String result= (String) request.getAttribute("result");
+    if (result == null){
+        result = "Welcome!";
+    }
+%>
+
+<script type="text/javascript" language="javascript">
+    alert("<%=result%>");
+</script>
+
 <form method="post" id="form" action="<%=path%>/addStaff" >
     <table border="0" align="center">
 
