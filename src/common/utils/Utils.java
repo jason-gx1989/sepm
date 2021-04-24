@@ -8,12 +8,13 @@ public class Utils {
 
 	final static String TIME_FORMART1 = "yyyy-MM-dd hh:mm:ss";
 
-	public static Date timeFormat(String s) {
+	public static java.sql.Date timeFormat(String s) {
 
 		DateFormat formatter = new SimpleDateFormat(TIME_FORMART1);
 		try {
 			Date date = formatter.parse(s);
-			return date;
+			java.sql.Date dateDB = new java.sql.Date(date.getTime());
+			return dateDB;
 		} catch (Exception e) {
 			return null;
 		}
