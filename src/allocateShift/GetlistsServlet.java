@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/AllocateShift")
-public class AllocateShiftServlet extends HttpServlet {
+@WebServlet("/Getlists")
+public class GetlistsServlet extends HttpServlet {
 
 	AllocateShiftService service = new AllocateShiftService();
 	
@@ -19,9 +19,6 @@ public class AllocateShiftServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		// Read field from view
-		String id = request.getParameter("id");
-		String staffAllocated = request.getParameter("staffAllocated");
-		service.allocateShift(Integer.parseInt(id), Integer.parseInt(staffAllocated));
 		
 		// Grab staff list from database
 		request.setAttribute("shiftList", service.getShiftList());

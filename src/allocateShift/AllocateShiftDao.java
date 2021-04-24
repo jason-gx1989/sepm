@@ -55,7 +55,13 @@ public class AllocateShiftDao {
 			while (rs.next()) {
 				Shift shift = new Shift();
 				shift.setId(rs.getInt("id"));
-				shift.setStaffAllocated(rs.getInt("staffAllocated"));				
+				shift.setStaffAllocated(rs.getInt("staffAllocated"));
+				shift.setEndTime(rs.getDate("endTime"));
+				shift.setStartTime(rs.getDate("startTime"));
+				shift.setLocation(rs.getString("location"));
+				shift.setStatus(rs.getInt("status"));
+				shift.setDuration(rs.getDouble("duration"));
+				shift.setRemark(rs.getString("remark"));
 				result.add(shift);
 			}
 			
