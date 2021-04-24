@@ -24,10 +24,10 @@ public class AddShiftService {
 
 		double duration = Double.valueOf(input_duration);
 		String location = input_location;
-		int status = Integer.valueOf(StaticRes.SHITF_STATUS_1);
 		String remark = input_remark;
 
-		dao.addShift(startTime, endTime, duration, location, StaticRes.SHITF_STAFF_INI, status, remark);
+		dao.addShift(startTime, endTime, duration, location, StaticRes.SHITF_STAFF_INI, StaticRes.SHITF_STATUS_1,
+				remark);
 		return "00";
 
 	}
