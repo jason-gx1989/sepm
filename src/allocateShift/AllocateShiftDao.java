@@ -77,19 +77,20 @@ public class AllocateShiftDao {
 		return null;
 	}
 	
-	public void allocateShift(int shiftId, int staffId) {
-		
-		try {
+	public int allocateShift(int shiftId, int staffId) {
+		int countrows=0;
+		try {			
 			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			String sql = "UPDATE shift SET staffAllocated = " + staffId + " WHERE id = " + shiftId;
 			Statement statement = conn.createStatement();
-			statement.executeUpdate(sql);
-			
+			countrows =statement.executeUpdate(sql);			
 			conn.close();
 			statement.close();
+			return countrows;
 		}
 		catch (SQLException se) {
 			se.printStackTrace();
+			return countrows;
 		}
 	}
 
