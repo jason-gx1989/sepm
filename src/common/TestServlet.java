@@ -16,7 +16,7 @@ public class TestServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
-	TestService service = new TestService();
+//	TestService service = new TestService();
 	//
 	//
 	//
