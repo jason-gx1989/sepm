@@ -39,6 +39,8 @@ public class TestallocateShift {
 		rs.next();
 		int staffIdMysql =rs.getInt("staffAllocated");
 		assertEquals(staffId, staffIdMysql,0);
+		conn.close();
+		ps.close();
 	}
 
 }
