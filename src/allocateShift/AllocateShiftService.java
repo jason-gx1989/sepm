@@ -8,9 +8,9 @@ public class AllocateShiftService {
 	AllocateShiftDao dao = new AllocateShiftDao();
 	
 
-	public void allocateShift(int shiftId, int staffId) {	
+	public int allocateShift(int shiftId, int staffId) {	
 		
-		dao.allocateShift(shiftId, staffId);
+		return dao.allocateShift(shiftId, staffId);
 	}
 	
 	
