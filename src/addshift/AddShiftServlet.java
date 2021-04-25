@@ -30,12 +30,12 @@ public class AddShiftServlet extends HttpServlet {
 		if ("01".equals(result)) {
 			String s = "Invalid Time Format";
 			request.setAttribute("s", s);
-			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);// TODO
+			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
 		}
 		if ("02".equals(result)) {
 			String s = "Invalid Time Format";
 			request.setAttribute("s", s);
-			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);// TODO
+			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
 		}
 
 		request.getRequestDispatcher("/GetlistsServlet").forward(request, response);

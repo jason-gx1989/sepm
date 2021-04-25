@@ -29,9 +29,9 @@
 </head>
 <body>
 	<%
-	Integer id = (Integer) request.getAttribute("id");
-		if (null == id) {
-			id = 0;
+	String msg = (String) request.getAttribute("s");
+		if (null == msg) {
+			msg = "";
 		}
 	%>
 
@@ -68,8 +68,8 @@
 					<td><input type="text" name="remark" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" style="width: 100px; height: 50px;"><span
-						id="msg"><%=id%></span> <input type="submit" value="Add Shift"
+					<td colspan="2" style="width: 100px; height: 50px;">
+					<%=msg%><input type="submit" value="Add Shift"
 						style="width: 100px" /></td>
 				</tr>
 				<tr>
