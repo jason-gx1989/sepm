@@ -1,9 +1,6 @@
 package addshift;
 
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,17 +28,17 @@ public class AddShiftServlet extends HttpServlet {
 
 		String result = service.addShift(startTime, endTime, duration, location, staffAllocated, remark);
 		if ("01".equals(result)) {
-			String s = "Invalid Time Format"; 
+			String s = "Invalid Time Format";
 			request.setAttribute("s", s);
 			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);// TODO
 		}
 		if ("02".equals(result)) {
-			String s = "Invalid Time Format"; 
+			String s = "Invalid Time Format";
 			request.setAttribute("s", s);
 			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);// TODO
 		}
 
-		request.getRequestDispatcher("/AllocateShift").forward(request, response);
+		request.getRequestDispatcher("/GetlistsServlet").forward(request, response);
 
 	}
 }

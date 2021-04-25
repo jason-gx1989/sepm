@@ -51,7 +51,7 @@
 				<input type="text" name="userType" />
 				<tr>
 					<td colspan="2" style="width: 100px; height: 50px;"><span
-						id="msg"><%-- <%=id%> --%></span> <input type="submit" value="login"
+						id="msg"><%-- <%=id%> --%></span> <input type="submit" value="xxx"
 						style="width: 100px" /></td>
 				</tr>
 
