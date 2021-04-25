@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/GetStaffServlet") // TODO servlet命名一般叫xxxServlet，这里我先给你改了，下次注意就行了。
+@WebServlet("/GetStaffServlet") 
 public class GetStaffServlet extends HttpServlet {
 
 	ChangeLimitService service = new ChangeLimitService();

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/ChangeLimit")
+@WebServlet("/ChangeLimitServlet")
 public class ChangeLimitServlet extends HttpServlet {
 
 	ChangeLimitService service = new ChangeLimitService();

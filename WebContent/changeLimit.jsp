@@ -47,7 +47,7 @@
 
 			<!-- Print data -->
 			<c:forEach items="${staffList}" var="staff">
-				<form action="ChangeLimit" method="post">
+				<form action="ChangeLimitServlet" method="post">
 				<tr>
 					<td align="center">${staff.id}</td>
 					<input type="hidden" name="id" value="${staff.id}" />
