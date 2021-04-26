@@ -21,12 +21,11 @@ public class AddShiftServlet extends HttpServlet {
 
 		String duration = request.getParameter("duration");
 		String location = request.getParameter("location");
-		String staffAllocated = request.getParameter("staffAllocated");
 		String remark = request.getParameter("remark");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
 
-		String result = service.addShift(startTime, endTime, duration, location, staffAllocated, remark);
+		String result = service.addShift(startTime, endTime, duration, location, remark);
 		if ("01".equals(result)) {
 			String s = "Invalid Time Format";
 			request.setAttribute("s", s);
