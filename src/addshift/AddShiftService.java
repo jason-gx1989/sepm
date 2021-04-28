@@ -14,6 +14,7 @@ public class AddShiftService {
 		// TODO 判断input_duration只能为数字（包括小数）
 		// TODO 判断input_location不能为空。
 		// TODO 补充junit和文档中的testcase，所有判断条件的每一个分支都要涵盖到。
+		
 
 		java.sql.Date startTime = Utils.timeFormat(input_startTime);
 		if (null == startTime) {
@@ -24,9 +25,23 @@ public class AddShiftService {
 		if (null == endTime) {
 			return "02";
 		}
-
-		double duration = Double.valueOf(input_duration);
+		
+		//判断input_duration只能为数字（包括小数）
+		double duration;
+		if(Utils.isNumeric(input_duration) == true) {
+			duration = Double.valueOf(input_duration);
+			
+		}
+		else {
+			return "03";
+		}
+		
+		//判断input_location不能为空
 		String location = input_location;
+		if(location == null) {
+			return "04";
+		}
+		
 		String remark = input_remark;
 
 		dao.addShift(startTime, endTime, duration, location, StaticRes.SHITF_STAFF_INI, StaticRes.SHITF_STATUS_1,

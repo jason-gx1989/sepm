@@ -36,6 +36,16 @@ public class AddShiftServlet extends HttpServlet {
 			request.setAttribute("s", s);
 			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
 		}
+		if ("03".equals(result)) {
+			String s = "Invalid Duration Format";
+			request.setAttribute("s", s);
+			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
+		}
+		if ("04".equals(result)) {
+			String s = "Location can't be null!";
+			request.setAttribute("s", s);
+			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
+		}
 
 		request.getRequestDispatcher("/GetlistsServlet").forward(request, response);
 
