@@ -1,12 +1,12 @@
 package entity;
 
-import java.util.Date;
-
 public class Shift {
 
 	private int id;
-	private Date startTime;
-	private Date endTime;
+//	private Date startTime;
+//	private Date endTime;
+	private java.sql.Date startTime;
+	private java.sql.Date endTime;
 	private double duration;
 	private String location;
 	private int staffAllocated;// 外键，指向staff
@@ -21,19 +21,19 @@ public class Shift {
 		this.id = id;
 	}
 
-	public Date getStartTime() {
+	public java.sql.Date getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(java.sql.Date startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public java.sql.Date getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(java.sql.Date endTime) {
 		this.endTime = endTime;
 	}
 
