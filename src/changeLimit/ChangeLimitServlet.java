@@ -1,6 +1,7 @@
 package changeLimit;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,15 @@ public class ChangeLimitServlet extends HttpServlet {
 		// Read field from view
 		String id = request.getParameter("id");
 		String newLimit = request.getParameter("newLimit");
-		service.changeLimit(Integer.parseInt(id), Double.parseDouble(newLimit));
+		
+		Pattern pattern = Pattern.compile("^[0-9]+(.[0-9]{1})?$");
+		
+		if (!pattern.matcher(newLimit).matches())
+			request.setAttribute("result", "Invalid work limit! Please input a positive number with at most one decimal place.");
+		else {
+			service.changeLimit(Integer.parseInt(id), Double.parseDouble(newLimit));
+			request.setAttribute("result", "Work limit has been changed successfully.");
+		}
 		
 		// Grab staff list from database
 		request.setAttribute("staffList", service.getStaffList());

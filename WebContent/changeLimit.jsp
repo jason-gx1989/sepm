@@ -5,6 +5,13 @@
 <%@page import="java.util.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%
+request.setCharacterEncoding("UTF-8");
+String result = (String) request.getAttribute("result");
+if (result == null)
+	result = "";
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +40,8 @@
 </head>
 <body>
 
+	<input type="hidden" name="alertStr" id="alertStr" value=<%=result%> />
+
 	<div class="main" style="margin-top: 200px;">
 
 		<table border="0" align="center">
@@ -47,24 +56,27 @@
 
 			<!-- Print data -->
 			<c:forEach items="${staffList}" var="staff">
-				<form action="ChangeLimitServlet" method="post">
-				<tr>
-					<td align="center">${staff.id}</td>
-					<input type="hidden" name="id" value="${staff.id}" />
-					<td align="center">${staff.fullName}</td>
-					<td><input type="text" name="newLimit" value="${staff.workHourLimit}" /></td>
-					<td align="center"><input type="submit" value="Change"
-						style="width: 100px" /></td>
-				</tr>
+				<form action="ChangeLimitServlet" method="post" id="form">
+					<tr>
+						<td align="center">${staff.id}</td>
+						<input type="hidden" name="id" value="${staff.id}" />
+						<td align="center">${staff.fullName}</td>
+						<td><input type="text" name="newLimit" id="newLimit"
+							value="${staff.workHourLimit}" /></td>
+						<td align="center"><input type="submit" value="Change"
+							style="width: 100px" /></td>
+					</tr>
 				</form>
 			</c:forEach>
 		</table>
-
-
-
-
-
 	</div>
-
 </body>
+
+<script type="text/javascript" language="javascript">
+	var s = document.getElementById("alertStr").value;
+	if ('<%=result%>' !== '') {
+		alert('<%=result%>');
+	}
+</script>
+
 </html>

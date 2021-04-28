@@ -14,6 +14,7 @@ public class changeLimitTest {
 
 	String name;
 	Double newLimit;
+	int id;
 
 	@Before
 	public void setUp() {
@@ -24,21 +25,31 @@ public class changeLimitTest {
 		name = "Nier";
 		newLimit = 40d;
 
+		// Insert new staff into database
+		staffService.createStaff(name, null, null, null, null, null);
+		
+		// Retrieve staff from database
+		id = staffTestDao.getByName(name).getId();
 	}
 
 	@Test
-	public void testLimit() {
-
-		// Insert new staff into database
-		staffService.createStaff(name, null, null, null, null, null);
-
-		// Retrieve staff from database
-		int id = staffTestDao.getByName(name).getId();
-
-		// Change work limit
+	public void testValidLimit() {
+		// Change work limit to a valid value
 		changeLimitservice.changeLimit(id, newLimit);
 
-		// assert
+		// Assert the current limit is the new limit specified
+		assertEquals(newLimit, staffTestDao.getByName(name).getWorkHourLimit(), 0.1);
+	}
+
+	@Test
+	public void testNegativeLimit() {
+		// Change work limit to a valid value
+		changeLimitservice.changeLimit(id, newLimit);
+		
+		// Change work limit to a negative value
+		changeLimitservice.changeLimit(id, -10d);
+		
+		// Assert the current limit has not been changed to negative
 		assertEquals(newLimit, staffTestDao.getByName(name).getWorkHourLimit(), 0.1);
 	}
 
