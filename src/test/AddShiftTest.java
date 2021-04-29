@@ -23,23 +23,6 @@ public class AddShiftTest {
 		location = "MD";
 	}
 
-	@Test
-	public void testAddShift() {
-
-		// Insert new shift
-		addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
-
-		// Query the data from the database
-		double duration = addShiftTestDao.getShiftByLoc(location).getDuration();
-		String remark = addShiftTestDao.getShiftByLoc(location).getRemark();
-		String location1 = addShiftTestDao.getShiftByLoc(location).getLocation();
-		java.sql.Date startTime = addShiftTestDao.getShiftByLoc(location).getStartTime();
-
-		// AssertTrue
-		assertTrue(duration == 5);
-		assertEquals("Pause", remark);
-		assertEquals("MD", location1);
-	}
 	
 	@Test
 	public void testStratTime() {
@@ -48,7 +31,7 @@ public class AddShiftTest {
 		addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
 		java.sql.Date startTime = addShiftTestDao.getShiftByLoc(location).getStartTime();
 		//AssertEquals
-		assertEquals(expectedTime, startTime);;
+		assertEquals(expectedTime, startTime);
 		
 	}
 	
