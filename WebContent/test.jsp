@@ -51,14 +51,45 @@
 				<input type="text" name="userType" />
 				<tr>
 					<td colspan="2" style="width: 100px; height: 50px;"><span
-						id="msg"><%-- <%=id%> --%></span> <input type="submit" value="xxx"
-						style="width: 100px" /></td>
+						id="msg"> <%-- <%=id%> --%>
+					</span> <input type="submit" value="xxx" style="width: 100px" /></td>
 				</tr>
 
 			</table>
 		</form>
-
+		<!-- <button type="button" name="notification" onclick="sendNotification()">notification</button> -->
 	</div>
 
 </body>
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script>
+	function systemConsole() {
+		/* console.log("xxxxxxxx"); */
+		sendNotification();
+	}
+	setInterval(systemConsole, 1000);
+
+	function sendNotification() {
+		$.ajax({
+			url : 'TestAjaxServlet',
+			data : {
+				userid : '1'
+			},
+			type : "post",
+			success : function(data) {
+				/* alert(data); */
+
+				openwindow = window.open("", "newwin","height=250, width=250,toolbar=no,scrollbars=" + scroll+ ",menubar=no");
+				//写成一行 
+				openwindow.document.write("<title>notice</title>")
+				openwindow.document.write("<body bgcolor=#ffffff>")
+				openwindow.document.write(data)
+				openwindow.document.write("</body>")
+				openwindow.document.write("</html>")
+				openwindow.document.close(); 
+			}
+		});
+
+	}
+</script>
 </html>
