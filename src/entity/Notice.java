@@ -5,10 +5,10 @@ import java.util.Date;
 public class Notice {
 
 	private int id;
-	private String type;
+	private String type;// 消息类型
 	private int from;
 	private int to;
-	private String status;
+	private String status;// 1--已发送 2--未发送
 	private Date sendTime;
 
 	public int getId() {
