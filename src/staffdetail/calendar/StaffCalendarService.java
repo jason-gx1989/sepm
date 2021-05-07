@@ -10,7 +10,7 @@ public class StaffCalendarService {
 
 	public String getCalendarStr(int staffId, int year, int month) {
 
-		String result = "";
+		String result = ",";
 
 		List<StaffCalendarPojo> staffCalendarPojoList = dao.get(staffId, year, month);
 
