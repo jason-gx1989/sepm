@@ -24,7 +24,7 @@ public class StaffCalendarService {
 			int firstDate = startDate;
 			int lastDate = endDate;
 
-			// 第一天与最后一天夸月
+			// 第一天与最后一天跨月
 			if (startMonth < month) {
 				firstDate = 1;
 			}
