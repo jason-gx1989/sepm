@@ -2,8 +2,10 @@ package changePassword;
 
 import common.configration.DBConfig;
 import common.utils.DBExecuteUtils;
+import entity.Staff;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class ChangePasswordDao {
@@ -27,12 +29,12 @@ public class ChangePasswordDao {
 			se.printStackTrace();
 		}
 		if (password.equals("")){
-			return 0;  			//user does not exist
+			return 0;  			//没有这个人
 		}
 		if (!password.equals(oldPassword)){
 			System.out.println("old" + oldPassword);
 			System.out.println("pass" + password);
-			return -1;         //incorrect password
+			return -1;         //密码不正确
 		}else {
 			String sql = "UPDATE staff SET password = " + "'" + newPassword + "'" + " WHERE fullName = " + "'" + fullName + "'" ;
 			DBExecuteUtils.update(sql);

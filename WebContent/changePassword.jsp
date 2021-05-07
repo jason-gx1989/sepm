@@ -21,7 +21,7 @@
 	alert("<%=result%>");
 </script>
 
-<form method="post" id="form" action="<%=path%>/changePassword" >
+<form method="post" id="form" action="<%=path%>/ChangePasswordServlet" >
 	<table border="0" align="center">
 
 		<tr>

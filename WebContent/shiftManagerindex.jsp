@@ -45,10 +45,13 @@
 					<td><a href="addShiftManager.jsp">Add Shift Manager</a></td>
 				</tr>
 				<tr>
+					<td><a href="changePassword.jsp">change Password</a></td>
+				</tr>
+				<tr>
 					<td><a href="addStaff.jsp">Add Staff</a></td>
 				</tr>
 				<tr>
-					<td><a href="GetlistsServlet">Allocate Shift</a></td>
+					<td><a href="GetShiftServlet">Allocate Shift</a></td>
 				</tr>
 				<tr>
 					<td><a href="GetStaffServlet">Change Limit</a></td>
