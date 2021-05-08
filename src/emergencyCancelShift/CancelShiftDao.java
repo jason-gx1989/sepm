@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import common.configration.DBConfig;
 import entity.Shift;
+import entity.ShiftManager;
 
 public class CancelShiftDao {
 	
@@ -63,4 +64,32 @@ public class CancelShiftDao {
 		return null;
 	}
 
+	
+	
+public ArrayList<ShiftManager> getShifManagertList() {
+		
+		try {
+			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+			String sql = "select * from shiftmanager";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			ArrayList<ShiftManager> result = new ArrayList<ShiftManager>();
+			while (rs.next()) {
+				ShiftManager shiftManager = new ShiftManager();
+				shiftManager.setId(rs.getInt("id"));
+				shiftManager.setEmail(rs.getString("email"));
+				result.add(shiftManager);
+			}
+			
+			conn.close();
+			ps.close();
+			
+			return result;
+		}
+		catch (SQLException se) {
+			se.printStackTrace();
+		}
+		
+		return null;
+	}
 }
