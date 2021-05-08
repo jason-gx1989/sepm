@@ -5,10 +5,10 @@ import java.util.Date;
 public class Notice {
 
 	private int id;
-	private String type;// 消息类型
+	private String type;	// 1 - shift allocation; 2 - shift cancellation 
 	private int from;
 	private int to;
-	private String status;// 1--已发送 2--未发送
+	private String status;	// 0 - unsent; 1 - sent
 	private Date sendTime;
 
 	public int getId() {
