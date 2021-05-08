@@ -13,7 +13,7 @@ public class NoticeDao {
 		
 		try {
 			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "INSERT INTO notice VALUES (" + type + "," + from + "," + to + "," + "0" + "," + Utils.getCurrentTime() + ")";
+			String sql = "INSERT INTO NOTICE (`type`, `from`, `to`, `status`, `sendTime`) VALUES ('" + type + "','" + from + "','" + to + "','" + "0" + "','" + Utils.getCurrentTime() + "')";
 			Statement statement = conn.createStatement();
 			statement.executeUpdate(sql);
 			
@@ -26,29 +26,28 @@ public class NoticeDao {
 	}
 	
 	
-	public ArrayList<Notice> getNoticeList(int to) {
+	public Notice getNotice(int to, String type) {
 		
 		try {
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "SELECT * from notice WHERE id = " + to + "AND status = " + "0";
+			String sql = "SELECT * from notice WHERE `to` = " + to + " AND `type` = " + type + " AND `status` = '0' ORDER BY sendTime DESC LIMIT 1";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			ArrayList<Notice> result = new ArrayList<Notice>();
+			Notice notice = null;
 			while (rs.next()) {
-				Notice notice = new Notice();
+				notice = new Notice();
 				notice.setId(rs.getInt("id"));
 				notice.setType(rs.getString("type"));
 				notice.setFrom(rs.getInt("from"));
 				notice.setTo(rs.getInt("to"));
 				notice.setStatus(rs.getString("status"));
 				notice.setSendTime(rs.getDate("sendTime"));
-				result.add(notice);
 			}
 			
 			conn.close();
 			ps.close();
 			
-			return result;
+			return notice;
 		}
 		catch (SQLException se) {
 			se.printStackTrace();
@@ -62,7 +61,7 @@ public class NoticeDao {
 		
 		try {
 			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "UPDATE notice SET status = " + status + " WHERE id = " + id;
+			String sql = "UPDATE notice SET `status` = " + status + " WHERE id = " + id;
 			Statement statement = conn.createStatement();
 			statement.executeUpdate(sql);
 			

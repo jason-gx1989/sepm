@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import entity.Notice;
 import notice.NoticeService;
 
 
@@ -20,9 +22,21 @@ public class NotifyShiftServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// Pass variables to view
-		request.setAttribute("noticeList", service.getNoticeList(1));
+		Notice notice = service.getNotice(1, "1");
 		
-		
+		if (notice != null) {
+			int id = notice.getId();
+			service.updateStatus(id, "1");
+			
+			// Pass variables to view
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("You have a notification regarding shift allocation");
+		}
+		else {
+			response.setContentType("text/plain");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write("-1");
+		}
 	}
 }

@@ -16,9 +16,9 @@ public class NoticeService {
 	}
 	
 	
-	public ArrayList<Notice> getNoticeList(int to) {
+	public Notice getNotice(int to, String type) {
 		
-		return dao.getNoticeList(to);
+		return dao.getNotice(to, type);
 	}
 	
 	

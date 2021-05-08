@@ -69,7 +69,7 @@
 		/* console.log("xxxxxxxx"); */
 		sendNotification();
 	}
-	setInterval(systemConsole, 1000);
+	setInterval(systemConsole, 2000);
 
 	function sendNotification() {
 		$.ajax({
@@ -80,15 +80,17 @@
 			type : "post",
 			success : function(data) {
 				/* alert(data); */
-
-				openwindow = window.open("", "newwin","height=250, width=250,toolbar=no,scrollbars=" + scroll+ ",menubar=no");
-				
-				openwindow.document.write("<title>notice</title>")
-				openwindow.document.write("<body bgcolor=#ffffff>")
-				openwindow.document.write(data)
-				openwindow.document.write("</body>")
-				openwindow.document.write("</html>")
-				openwindow.document.close(); 
+				console.log(data);
+				if (data !== '-1') {
+					openwindow = window.open("", "newwin","height=250, width=250,toolbar=no,scrollbars=" + scroll+ ",menubar=no");
+					
+					openwindow.document.write("<title>notice</title>")
+					openwindow.document.write("<body bgcolor=#ffffff>")
+					openwindow.document.write(data)
+					openwindow.document.write("</body>")
+					openwindow.document.write("</html>")
+					openwindow.document.close(); 
+				}
 			}
 		});
 
