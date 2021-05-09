@@ -54,6 +54,9 @@
 					<td><a href="GetlistsServlet">Allocate Shift</a></td>
 				</tr>
 				<tr>
+					<td><a href="GetShiftServlet">Handle Allocate Shift</a></td>
+				</tr>
+				<tr>
 					<td><a href="GetStaffServlet">Change Limit</a></td>
 				</tr>
 
