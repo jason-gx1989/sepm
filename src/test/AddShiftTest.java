@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.*;
 
 import addshift.AddShiftService;
@@ -27,9 +29,9 @@ public class AddShiftTest {
 	@Test
 	public void testStratTime() {
 		// Insert new shift
-		java.sql.Date expectedTime = Utils.timeFormat("2021-04-25 00:00:00");
+		Date expectedTime = Utils.timeFormat("2021-04-25 00:00:00");
 		addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
-		java.sql.Date startTime = addShiftTestDao.getShiftByLoc(location).getStartTime();
+		Date startTime = addShiftTestDao.getShiftByLoc(location).getStartTime();
 		//AssertEquals
 		assertEquals(expectedTime, startTime);
 		
@@ -38,9 +40,9 @@ public class AddShiftTest {
 	@Test
 	public void testEndTime() {
 		// Insert new shift
-		java.sql.Date expectedTime = Utils.timeFormat("2021-04-26 00:00:00");
+		Date expectedTime = Utils.timeFormat("2021-04-26 00:00:00");
 		addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
-		java.sql.Date endTime = addShiftTestDao.getShiftByLoc(location).getEndTime();
+		Date endTime = addShiftTestDao.getShiftByLoc(location).getEndTime();
 		//AssertEquals
 		assertEquals(expectedTime, endTime);
 		

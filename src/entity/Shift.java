@@ -23,7 +23,7 @@ public class Shift {
 		this.id = id;
 	}
 
-	public java.sql.Date getStartTime() {
+	public Date getStartTime() {
 		return startTime;
 	}
 
@@ -31,7 +31,7 @@ public class Shift {
 		this.startTime = startTime;
 	}
 
-	public java.sql.Date getEndTime() {
+	public Date getEndTime() {
 		return endTime;
 	}
 
