@@ -13,29 +13,33 @@ import entity.Shift;
 import entity.ShiftManager;
 
 public class CancelShiftDao {
-	
+
 	public int cancelShift(int shiftId) {
-		int countrows=0;
-		try {			
-			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+
+		// TODO 这里不需要把staffAllocated置为空，应该更新shift表中status字段，具体的值请参阅Shift
+		// entity中status的注释。
+
+		int countrows = 0;
+		try {
+			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME,
+					DBConfig.DB_PASSWORD);
 			String sql = "UPDATE shift SET staffAllocated = " + null + " WHERE id = " + shiftId;
 			Statement statement = conn.createStatement();
-			countrows =statement.executeUpdate(sql);			
+			countrows = statement.executeUpdate(sql);
 			conn.close();
 			statement.close();
 			return countrows;
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			se.printStackTrace();
 			return countrows;
 		}
 	}
-	
+
 	public ArrayList<Shift> getStaffShiftList(int staffId) {
-		
+
 		try {
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "select * from shift WHERE staffAllocated = "+ staffId;
+			String sql = "select * from shift WHERE staffAllocated = " + staffId;
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			ArrayList<Shift> result = new ArrayList<Shift>();
@@ -51,23 +55,20 @@ public class CancelShiftDao {
 				shift.setRemark(rs.getString("remark"));
 				result.add(shift);
 			}
-			
+
 			conn.close();
 			ps.close();
-			
+
 			return result;
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			se.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
-	
-	
-public ArrayList<ShiftManager> getShifManagertList() {
-		
+	public ArrayList<ShiftManager> getShifManagertList() {
+
 		try {
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			String sql = "select * from shiftmanager";
@@ -80,16 +81,15 @@ public ArrayList<ShiftManager> getShifManagertList() {
 				shiftManager.setEmail(rs.getString("email"));
 				result.add(shiftManager);
 			}
-			
+
 			conn.close();
 			ps.close();
-			
+
 			return result;
-		}
-		catch (SQLException se) {
+		} catch (SQLException se) {
 			se.printStackTrace();
 		}
-		
+
 		return null;
 	}
 }

@@ -20,7 +20,7 @@ public class GetStaffShiftsServlet extends HttpServlet {
 
 		// Grab staff shifts list from database
 		//测试staffid =1后续根据登陆情况调整
-		String staffId = "1";
+		String staffId = "222";
 		request.setAttribute("shiftList", service.getStaffShiftList(Integer.parseInt(staffId)));
 
 		request.getRequestDispatcher("/cancelShift.jsp").forward(request, response);
