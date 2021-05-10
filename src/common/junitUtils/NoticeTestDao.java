@@ -1,35 +1,18 @@
-package notice;
+package common.junitUtils;
 
+import entity.Notice;
 import java.sql.*;
 import common.configration.DBConfig;
 import common.utils.Utils;
-import entity.Notice;
 
 
-public class NoticeDao {
+public class NoticeTestDao {
 
-	public void insertNotice(String type, int from, int to) {
-		
-		try {
-			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "INSERT INTO NOTICE (`type`, `from`, `to`, `status`, `sendTime`) VALUES ('" + type + "','" + from + "','" + to + "','" + "0" + "','" + Utils.getCurrentTime() + "')";
-			Statement statement = conn.createStatement();
-			statement.executeUpdate(sql);
-			
-			conn.close();
-			statement.close();
-		}
-		catch (SQLException se) {
-			se.printStackTrace();
-		}
-	}
-	
-	
-	public Notice getNotice(int to, String type) {
+	public Notice getLatestNotice() {
 		
 		try {
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "SELECT * from notice WHERE `to` = " + to + " AND `type` = " + type + " AND `status` = '0' ORDER BY sendTime DESC LIMIT 1";
+			String sql = "SELECT * from `notice` ORDER BY `sendTime` DESC LIMIT 1";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			Notice notice = null;
@@ -56,11 +39,11 @@ public class NoticeDao {
 	}
 	
 	
-	public void updateStatus(int id, String status) {
+	public void deleteLatestNotice() {
 		
 		try {
 			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "UPDATE notice SET `status` = " + status + " WHERE id = " + id;
+			String sql = "DELETE FROM `notice` WHERE `id` = " + getLatestNotice().getId();
 			Statement statement = conn.createStatement();
 			statement.executeUpdate(sql);
 			

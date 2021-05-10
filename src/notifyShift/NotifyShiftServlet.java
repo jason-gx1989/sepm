@@ -31,7 +31,7 @@ public class NotifyShiftServlet extends HttpServlet {
 			// Pass variables to view
 			response.setContentType("text/plain");
 			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write("You have a notification regarding shift allocation");
+			response.getWriter().write("You have a notification regarding shift allocation (received on " + notice.getSendTime() + ")");
 		}
 		else {
 			response.setContentType("text/plain");
