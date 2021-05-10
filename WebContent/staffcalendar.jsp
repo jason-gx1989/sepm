@@ -107,7 +107,7 @@ li {
 		$.ajax({
 			url : 'StaffCalendarServlet',
 			data : {
-				staffId : '123',
+				staffId : '222',
 				year : curYear,
 				month : curMonth
 			},

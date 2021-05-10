@@ -14,6 +14,8 @@ public class StaffCalendarService {
 
 		List<StaffCalendarPojo> staffCalendarPojoList = dao.get(staffId, year, month);
 
+		System.out.println("sss " + staffCalendarPojoList.size());
+
 		for (StaffCalendarPojo pojo : staffCalendarPojoList) {
 
 			int startMonth = pojo.getStartMonth();
@@ -48,14 +50,14 @@ public class StaffCalendarService {
 
 			}
 
-			System.out.println("firstDate >> " + firstDate);
-
-			System.out.println("lastDate >> " + lastDate);
+//			System.out.println("firstDate >> " + firstDate);
+//
+//			System.out.println("lastDate >> " + lastDate);
 
 			for (int i = firstDate; i <= lastDate; i++) {
 //				String date = String.valueOf(firstDate);
 				result = buildDateString(String.valueOf(i), result);
-				System.out.println("result >> " + result);
+//				System.out.println("result >> " + result);
 			}
 
 			System.out.println();

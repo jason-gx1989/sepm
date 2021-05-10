@@ -27,11 +27,11 @@ public class StaffCalendarDao {
 						"DATE_FORMAT(endTime, '%Y') AS endYear,"+
 						"status AS status" + " FROM SHIFT" +
 						" WHERE " + 
-						"(DATE_FORMAT(startTime, '%m') = ?" + 
+						"((DATE_FORMAT(startTime, '%m') = ?" + 
 						" AND DATE_FORMAT(startTime, '%Y') = ?)"+
 						" OR "+
 						" (DATE_FORMAT(endtime, '%m') = ?" + 
-						" AND DATE_FORMAT(endtime, '%Y') = ?)"+
+						" AND DATE_FORMAT(endtime, '%Y') = ?))"+
 						" AND " + 
 						"staffAllocated = ?";
 
@@ -43,6 +43,8 @@ public class StaffCalendarDao {
 			ps.setInt(5, staffId);
 			ResultSet rs = ps.executeQuery();
 			
+//			 System.out.println("staffId >> " + staffId);
+//			 System.out.println("sql >> " + sql);
 			List<StaffCalendarPojo> pojoList = new ArrayList<StaffCalendarPojo>();
 			while (rs.next()) {
 				StaffCalendarPojo pojo = new StaffCalendarPojo();
