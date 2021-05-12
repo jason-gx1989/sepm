@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ChangeLimitService {
 
-	ChangeLimitDao dao = new ChangeLimitDao();
+	private ChangeLimitDao dao = new ChangeLimitDao();
 
 	
 	public void changeLimit(int id, double newLimit) {
