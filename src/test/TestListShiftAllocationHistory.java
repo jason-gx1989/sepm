@@ -18,8 +18,6 @@ import listShiftAllocationHistory.listShiftAllocationHistoryDao;
 
 public class TestListShiftAllocationHistory {
 
-	// TODO
-	// 测试查询功能，需要在脚本中初始化测试数据，要不然换个机器或者数据库就全跑不过了。另外这么写脚本太啰嗦了，可以Google一下assertAll方法。
 	public Connection conn;
 	public listShiftAllocationHistoryDao dao;
 	public AllocateShiftService service1;
@@ -51,7 +49,7 @@ public class TestListShiftAllocationHistory {
 	public void testListShiftDuration() {
 		Shift shift = dao.getShiftAllocationHistory("1").get(0);
 		double duration = shift.getDuration();
-		assertEquals("duration correct", 5, duration,0.0);
+		assertEquals("duration incorrect", 5, duration,0.0);
 		
 	}
 	
@@ -66,7 +64,7 @@ public class TestListShiftAllocationHistory {
 	public void testListShiftStaffAllocated() {
 		Shift shift = dao.getShiftAllocationHistory("1").get(0);
 		int staff = shift.getStaffAllocated();
-		assertEquals("staffAllocated correct", 1, staff);
+		assertEquals("staffAllocated incorrect", 1, staff);
 
 	}
 	
@@ -75,7 +73,7 @@ public class TestListShiftAllocationHistory {
 	public void testListShiftRemark() {
 		Shift shift = dao.getShiftAllocationHistory("1").get(0);
 		String remark = shift.getRemark();
-		assertEquals("remark correct", "Pause", remark);
+		assertEquals("remark incorrect", "Pause", remark);
 	}
 //	@Test
 //	public void testListShiftDuration() {
