@@ -17,7 +17,6 @@
 	color: red;
 	font-wight: bold;
 }
-
 .main {
 	text-align: center;
 	background-color: #fff;
@@ -33,21 +32,19 @@
 }
 </style>
 </head>
-
-<%
-//TODO 跳转回到这个本页面是对的，但是忘了把列表的值读出来。
-	//TODO 列表中status字段不能直接展示数字，要不然用户看不懂，可以用判断语句翻译成文字，或者直接在sql语句中判断。
-%>
 <body>
 
 
 	<div class="main" style="margin-top: 200px;">
 
 
-		<br> <br> <br>
+		<br>		
+		<br>		
+		<br>
 
-		<div align="center">Available shifts to be allocated</div>
-		<table align="center">
+<div align="center">Available shifts to be allocated
+</div>
+		<table  align="center" >			
 			<tr>
 				<td align="center">ShiftID</td>
 				<td align="center">allocatedStaffID</td>
@@ -60,24 +57,21 @@
 			</tr>
 
 			<!-- Print data -->
-			<c:forEach items="${shiftList}" var="shift" varStatus="status">
-				<form id="form${status.index}" method="post">
+			<c:forEach items="${shiftList}" var="shift" varStatus ="status">
+				<form id = "form${status.index}"  method="post">
 					<tr>
 						<td align="center">${shift.id}</td>
 						<input type="hidden" name="id" value="${shift.id}" />
-						<td align="center">${shift.staffAllocated}</td>
-						<input type="hidden" name="staffId"
-							value="${shift.staffAllocated}" />
+						<td align="center" >${shift.staffAllocated}</td>
+						<input type="hidden" name="staffId" value="${shift.staffAllocated}" />
 						<td align="center">${shift.startTime}</td>
 						<td align="center">${shift.endTime}</td>
 						<td align="center">${shift.duration}</td>
 						<td align="center">${shift.location}</td>
 						<td align="center">${shift.status}</td>
 						<td align="center">${shift.remark}</td>
-						<td align="center"><button type="button"
-								onclick="accept(${status.index})">accept</button></td>
-						<td align="center"><button type="button"
-								onclick="reject(${status.index})">reject</button></td>
+						<td align="center"><button type="button"  onclick="accept(${status.index})" >accept</button></td>
+						<td align="center"><button type="button"  onclick="reject(${status.index})" >reject</button></td>
 					</tr>
 				</form>
 			</c:forEach>
