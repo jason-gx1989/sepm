@@ -18,11 +18,7 @@
 %>
 
 <script type="text/javascript" language="javascript">
-
-	if(result !== "Welcome!"){
-		alert("<%=result%>");
-	}
-
+	alert("<%=result%>");
 </script>
 
 <form method="post" id="form" action="<%=path%>/ChangePasswordServlet" >
@@ -44,7 +40,7 @@
 		<td><input type="password" name="newPassword"  id="newPassword"/></td>
 		</tr>
 		</tr>
-		<td align="right">Confirm new password:</td>
+		<td align="right">new password:</td>
 		<td><input type="password" name="newPassword2"  id="newPassword2"/></td>
 		</tr>
 		<tr>

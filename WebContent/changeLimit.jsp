@@ -44,13 +44,50 @@ if (result == null)
 
 	<div class="main" style="margin-top: 200px;">
 
-		<table border="0" align="center">
-
+		<table  border="0" align="center">
+			<tr>
+				<b>ShiftManager</b>
+			</tr>
 			<!-- Print table header -->
 			<tr>
 				<td align="center">ID</td>
 				<td align="center">Full Name</td>
-				<td align="center">Work Limit</td>
+				<td align="center">mobileNumber</td>
+				<td align="center">email</td>
+
+			</tr>
+			<br>
+			<!-- Print data -->
+			<c:forEach items="${shiftManagerList}" var="shiftManager">
+				<form action="ChangeLimitServlet" method="post" id="form">
+					<tr>
+						<td align="center">${shiftManager.id}</td>
+						<input type="hidden" name="id" value="${shiftManager.id}" />
+						<td align="center">${shiftManager.fullName}</td>
+						<td align="center">${shiftManager.mobileNumber}</td>
+						<td align="center">${shiftManager.email}</td>
+
+					</tr>
+				</form>
+			</c:forEach>
+		</table>
+
+		<br>
+		<br>
+		<table  border="0" align="center">
+			<tr>
+				<b>Staff</b>
+			</tr>
+			<br>
+			<!-- Print table header -->
+			<tr>
+				<td align="center">ID</td>
+				<td align="center">Full Name</td>
+				<td align="center">mobileNumber</td>
+				<td align="center">email</td>
+				<td align="center">preferredName</td>
+				<td align="center">homeAddress</td>
+				<td align="center">work Limit</td>
 				<td align="center"></td>
 			</tr>
 
@@ -61,6 +98,10 @@ if (result == null)
 						<td align="center">${staff.id}</td>
 						<input type="hidden" name="id" value="${staff.id}" />
 						<td align="center">${staff.fullName}</td>
+						<td align="center">${staff.mobileNumber}</td>
+						<td align="center">${staff.email}</td>
+						<td align="center">${staff.preferredName}</td>
+						<td align="center">${staff.homeAddress}</td>
 						<td><input type="text" name="newLimit" id="newLimit"
 							value="${staff.workHourLimit}" /></td>
 						<td align="center"><input type="submit" value="Change"
