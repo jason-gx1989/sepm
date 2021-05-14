@@ -1,12 +1,13 @@
 package changeLimit;
 
+import entity.ShiftManager;
 import entity.Staff;
 import java.util.ArrayList;
 
 
 public class ChangeLimitService {
 
-	private ChangeLimitDao dao = new ChangeLimitDao();
+	ChangeLimitDao dao = new ChangeLimitDao();
 
 	
 	public void changeLimit(int id, double newLimit) {
@@ -19,5 +20,9 @@ public class ChangeLimitService {
 	public ArrayList<Staff> getStaffList() {
 
 		return dao.getStaffList();
+	}
+
+	public ArrayList<ShiftManager> getShiftManagerList(){
+		return dao.getShiftManagerList();
 	}
 }
