@@ -60,7 +60,9 @@
 				<tr>
 					<td><a href="GetStaffProfileServlet?id=9">Change Staff Profile</a></td>
 				</tr>
-
+				<tr>
+					<td><a href="GetDetailsServlet">Deactive Account</a></td>
+				</tr>
 
 			</table>
 		</form>

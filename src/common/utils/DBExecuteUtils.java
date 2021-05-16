@@ -120,4 +120,26 @@ public static ShiftManager queryShiftManager(String sql){
     }
     return result;
 }
+
+/**
+ * DELETE
+ * @param sql the sql executed
+ * @return the ResultSet of query Operation
+ */
+public static void delete(String sql){
+
+    
+    try {
+
+        Class.forName("com.mysql.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.executeUpdate(sql);
+     
+        conn.close();
+        ps.close();
+    } catch (SQLException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+}
 }
