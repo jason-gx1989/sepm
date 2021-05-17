@@ -10,6 +10,7 @@ import org.junit.Test;
 import addshiftManager.ShiftManagerService;
 import addstaff.StaffService;
 import common.utils.DBExecuteUtils;
+import deactiveAccount.DeactiveAccountDao;
 import entity.ShiftManager;
 import entity.Staff;
 
@@ -19,6 +20,7 @@ public class TestDeactiveAccount {
 	 public ShiftManager shiftManager;
 	 public  StaffService staffService;
 	 public Staff staff;
+	 DeactiveAccountDao dao;
 	 
 	@Before
 	public void setUp() throws Exception {
@@ -27,6 +29,7 @@ public class TestDeactiveAccount {
         staff = new Staff();
         shiftManagerService = new ShiftManagerService();
         shiftManager = new ShiftManager();
+        dao = new DeactiveAccountDao();
         
         staff.setFullName("test");
         staff.setPassword("123234");
@@ -54,7 +57,7 @@ public class TestDeactiveAccount {
 	}
 
 	@Test
-	public void testDeactiveStaffAccount() {
+	public void testAddStaffAccount() {
 		String sql = " select * from staff where mobileNumber  = " + staff.getMobileNumber();
         Staff rs = DBExecuteUtils.queryStaff(sql);
         
@@ -68,7 +71,7 @@ public class TestDeactiveAccount {
 	}
 	
 	@Test
-	public void testDeactiveManagerAccount() {
+	public void testAddManagerAccount() {
 		String sql = " select * from shiftManager where mobileNumber  = " + shiftManager.getMobileNumber();
         ShiftManager rs = DBExecuteUtils.queryShiftManager(sql);
 
@@ -77,6 +80,36 @@ public class TestDeactiveAccount {
         Assert.assertEquals(shiftManager.getPassword(), rs.getPassword());
         Assert.assertEquals(shiftManager.getMobileNumber(), rs.getMobileNumber());
         Assert.assertEquals(shiftManager.getEmail(), rs.getEmail());
+	}
+	
+	@Test
+	public void testDeactiveAccount() {
+		
+		String sql = " select * from staff where mobileNumber  = " + staff.getMobileNumber();
+        Staff rs = DBExecuteUtils.queryStaff(sql);
+        String sql2 = " select * from shiftManager where mobileNumber  = " + shiftManager.getMobileNumber();
+        ShiftManager rs2 = DBExecuteUtils.queryShiftManager(sql2);
+		int id1 = rs.getId();
+		int id2 = rs2.getId();
+		dao.deactiveStaffAccount(id1);
+		dao.deactiveManagerAccount(id2);
+		String sql3 = " select * from staff where mobileNumber  = " + staff.getMobileNumber();
+        Staff rs3 = DBExecuteUtils.queryStaff(sql3);
+        String sql4 = " select * from shiftManager where mobileNumber  = " + shiftManager.getMobileNumber();
+        ShiftManager rs4 = DBExecuteUtils.queryShiftManager(sql4);
+		
+		Assert.assertEquals(null, rs3.getFullName());
+        Assert.assertEquals(null, rs3.getPassword());
+        Assert.assertEquals(null, rs3.getMobileNumber());
+        Assert.assertEquals(null, rs3.getEmail());
+        Assert.assertEquals(null, rs3.getPreferredName());
+        Assert.assertEquals(null, rs3.getHomeAddress());
+        
+        Assert.assertEquals(null, rs4.getFullName());
+        Assert.assertEquals(null, rs4.getPassword());
+        Assert.assertEquals(null, rs4.getMobileNumber());
+        Assert.assertEquals(null, rs4.getEmail());
+		
 	}
 
 }
