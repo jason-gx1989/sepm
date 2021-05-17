@@ -3,15 +3,14 @@
 
 <!-- Import collection and looping package -->
 <%@page import="java.util.*"%>
-<%@page import="allocateShift.*"%>
-<%@page import="changeLimit.*"%>
+<%@page import="changeShiftDuration.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Allocate shifts</title>
+<title>change shift duration</title>
 <style type="text/css">
 #span {
 	color: red;
@@ -38,11 +37,8 @@
 	<div class="main" style="margin-top: 200px;">
 
 
-		<br>		
-		<br>		
-		<br>
 
-<div align="center">Available shifts to be allocated
+<div align="center">Available shifts duration to be changed
 </div>
 		<table  align="center" >			
 			<tr>
@@ -57,21 +53,20 @@
 			</tr>
 
 			<!-- Print data -->
-			<c:forEach items="${shiftList}" var="shift" varStatus ="status">
-				<form id = "form${status.index}"  method="post">
+			<c:forEach items="${shiftList}" var="shift">
+				<form action="ChangeShiftDuration" method="post">
 					<tr>
 						<td align="center">${shift.id}</td>
-						<input type="hidden" name="id" value="${shift.id}" />
-						<td align="center" >${shift.staffAllocated}</td>
-						<input type="hidden" name="staffId" value="${shift.staffAllocated}" />
+						<input type="hidden" name="id" value="${shift.id}" />					
+						<td align="center">${shift.staffAllocated}</td>
 						<td align="center">${shift.startTime}</td>
-						<td align="center">${shift.endTime}</td>
-						<td align="center">${shift.duration}</td>
+						<td align="center">${shift.endTime}</td>						
+						<td><input type="text" name="duration"
+							value="${shift.duration}" /></td>
 						<td align="center">${shift.location}</td>
 						<td align="center">${shift.status}</td>
 						<td align="center">${shift.remark}</td>
-						<td align="center"><button type="button"  onclick="accept(${status.index})" >accept</button></td>
-						<td align="center"><button type="button"  onclick="reject(${status.index})" >reject</button></td>
+						<td align="center"><input type="submit" value="changeDuration" /></td>
 					</tr>
 				</form>
 			</c:forEach>
@@ -79,20 +74,4 @@
 	</div>
 
 </body>
-
-<script>
-	function accept(index)
-	{
-		document.getElementById("form"+index).action="AcceptShiftAllocationServlet";
-
-		document.getElementById("form"+index).submit();
-	}
-
-	function reject(index)
-	{
-		document.getElementById("form"+index).action="RejectShiftAllocationServlet";
-		document.getElementById("form"+index).submit();
-	}
-
-</script>
 </html>

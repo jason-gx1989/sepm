@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/GetStaffServlet") 
-public class GetStaffServlet extends HttpServlet {
+@WebServlet("/GetStaffAndShiftManagerServlet")
+public class GetStaffAndShiftManagerServlet extends HttpServlet {
 
 	ChangeLimitService service = new ChangeLimitService();
 
@@ -18,6 +18,7 @@ public class GetStaffServlet extends HttpServlet {
 
 		// Grab staff list from database
 		request.setAttribute("staffList", service.getStaffList());
+		request.setAttribute("shiftManagerList", service.getShiftManagerList());
 
 		request.getRequestDispatcher("/changeLimit.jsp").forward(request, response);
 	}

@@ -18,11 +18,7 @@
 %>
 
 <script type="text/javascript" language="javascript">
-
-	if(result !== "Welcome!"){
-		alert("<%=result%>");
-	}
-
+	alert("<%=result%>");
 </script>
 
 <form method="post" id="form" action="<%=path%>/ChangePasswordServlet" >

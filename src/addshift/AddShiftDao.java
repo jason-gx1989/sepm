@@ -1,13 +1,11 @@
 package addshift;
 
 import java.sql.*;
-import java.util.Date;
-
 import common.configration.DBConfig;
 
 public class AddShiftDao {
 	
-	public void addShift(Date startTime, Date endTime, double duration, String location, int staffAllocated, int status, String remark) {
+	public void addShift(java.sql.Date startTime, java.sql.Date endTime, double duration, String location, int staffAllocated, int status, String remark) {
 		
 		
 		try {

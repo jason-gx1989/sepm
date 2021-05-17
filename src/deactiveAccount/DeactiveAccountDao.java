@@ -1,31 +1,18 @@
-package changeLimit;
+package deactiveAccount;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
 import common.configration.DBConfig;
-import entity.Shift;
+import common.utils.DBExecuteUtils;
 import entity.ShiftManager;
 import entity.Staff;
 
-
-public class ChangeLimitDao {
-
-	public void changeLimit(int id, double newLimit) {
-		
-		try {
-			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "UPDATE staff SET workHourLimit = " + newLimit + " WHERE id = " + id;
-			Statement statement = conn.createStatement();
-			statement.executeUpdate(sql);
-			
-			conn.close();
-			statement.close();
-		}
-		catch (SQLException se) {
-			se.printStackTrace();
-		}
-	}
-	
+public class DeactiveAccountDao {
 	
 	public ArrayList<Staff> getStaffList() {
 		
@@ -58,7 +45,7 @@ public class ChangeLimitDao {
 		
 		return null;
 	}
-
+	
 	public ArrayList<ShiftManager> getShiftManagerList() {
 
 		try {
@@ -85,7 +72,19 @@ public class ChangeLimitDao {
 		catch (SQLException se) {
 			se.printStackTrace();
 		}
-
 		return null;
+	}
+	
+	
+	public void deactiveStaffAccount(int id) {
+		
+		String sql = "DELETE from staff where id =" + id;
+		DBExecuteUtils.delete(sql);
+	}
+	
+	public void deactiveManagerAccount(int id) {
+		
+		String sql = "DELETE from shiftmanager where id =" + id;
+		DBExecuteUtils.delete(sql);
 	}
 }

@@ -51,19 +51,20 @@
 					<td><a href="addStaff.jsp">Add Staff</a></td>
 				</tr>
 				<tr>
-					<td><a href="GetlistsServlet">Allocate Shift</a></td>
+					<td><a href="GetShiftServlet">Allocate Shift</a></td>
 				</tr>
 				<tr>
-					<td><a href="GetShiftServlet">Handle Allocate Shift</a></td>
+					<td><a href="GetStaffAndShiftManagerServlet">Change Limit</a></td>
+				</tr>
+
+				<tr>
+					<td><a href="GetStaffProfileServlet?id=9">Change Staff Profile</a></td>
 				</tr>
 				<tr>
-					<td><a href="GetStaffServlet">Change Limit</a></td>
+					<td><a href="GetDetailsServlet">Deactive Account</a></td>
 				</tr>
 
 			</table>
-
-
-
 		</form>
 
 	</div>

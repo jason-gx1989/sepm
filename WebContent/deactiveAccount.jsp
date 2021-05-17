@@ -16,7 +16,7 @@ if (result == null)
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Change Work Limit</title>
+<title>Deactive Account</title>
 <style type="text/css">
 #span {
 	color: red;
@@ -54,7 +54,7 @@ if (result == null)
 				<td align="center">Full Name</td>
 				<td align="center">mobileNumber</td>
 				<td align="center">email</td>
-
+				
 			</tr>
 			<br>
 			<!-- Print data -->
@@ -66,7 +66,7 @@ if (result == null)
 						<td align="center">${shiftManager.fullName}</td>
 						<td align="center">${shiftManager.mobileNumber}</td>
 						<td align="center">${shiftManager.email}</td>
-
+						<td><a href="DeactiveAccountServlet?id=${shiftManager.id}&p=m">Delete</a></td>
 					</tr>
 				</form>
 			</c:forEach>
@@ -102,10 +102,8 @@ if (result == null)
 						<td align="center">${staff.email}</td>
 						<td align="center">${staff.preferredName}</td>
 						<td align="center">${staff.homeAddress}</td>
-						<td><input type="text" name="newLimit" id="newLimit"
-							value="${staff.workHourLimit}" /></td>
-						<td align="center"><input type="submit" value="Change"
-							style="width: 100px" /></td>
+						<td><a href="DeactiveAccountServlet?id=${staff.id}&p=s">Delete</a></td>
+						
 					</tr>
 				</form>
 			</c:forEach>
