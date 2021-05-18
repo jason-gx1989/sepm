@@ -44,19 +44,17 @@ if (result == null)
 
 	<div class="main" style="margin-top: 200px;">
 
-		<table  border="0" align="center">
-			<tr>
-				<b>ShiftManager</b>
-			</tr>
+		<b>ShiftManager</b>
+		<table border="0" align="center">
+
 			<!-- Print table header -->
 			<tr>
 				<td align="center">ID</td>
 				<td align="center">Full Name</td>
-				<td align="center">mobileNumber</td>
-				<td align="center">email</td>
-
+				<td align="center">Work Limit</td>
+				<td align="center"></td>
 			</tr>
-			<br>
+
 			<!-- Print data -->
 			<c:forEach items="${shiftManagerList}" var="shiftManager">
 				<form action="ChangeLimitServlet" method="post" id="form">
@@ -71,14 +69,12 @@ if (result == null)
 				</form>
 			</c:forEach>
 		</table>
+		<br>
+		<br>
 
-		<br>
-		<br>
-		<table  border="0" align="center">
-			<tr>
-				<b>Staff</b>
-			</tr>
-			<br>
+		<b>Staff</b>
+		<table border="0" align="center">
+
 			<!-- Print table header -->
 			<tr>
 				<td align="center">ID</td>
@@ -87,7 +83,6 @@ if (result == null)
 				<td align="center">email</td>
 				<td align="center">preferredName</td>
 				<td align="center">homeAddress</td>
-				<td align="center">work Limit</td>
 				<td align="center"></td>
 			</tr>
 

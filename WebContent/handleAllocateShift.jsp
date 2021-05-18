@@ -68,7 +68,21 @@
 						<td align="center">${shift.endTime}</td>
 						<td align="center">${shift.duration}</td>
 						<td align="center">${shift.location}</td>
-						<td align="center">${shift.status}</td>
+						<c:if test="${shift.status == 0}">
+							<td align="center">initial</td>
+						</c:if>
+						<c:if test="${shift.status == 1}">
+							<td align="center">allocated</td>
+						</c:if>
+						<c:if test="${shift.status == 2}">
+							<td align="center">accepted</td>
+						</c:if>
+						<c:if test="${shift.status == 3}">
+							<td align="center">rejected</td>
+						</c:if>
+						<c:if test="${shift.status == 4} ">
+							<td align="center">canceled</td>
+						</c:if>
 						<td align="center">${shift.remark}</td>
 						<td align="center"><button type="button"  onclick="accept(${status.index})" >accept</button></td>
 						<td align="center"><button type="button"  onclick="reject(${status.index})" >reject</button></td>
@@ -92,6 +106,20 @@
 	{
 		document.getElementById("form"+index).action="RejectShiftAllocationServlet";
 		document.getElementById("form"+index).submit();
+	}
+
+	function transform(status){
+		if (status === 0){
+			return "initial";
+		}else if (status === 1){
+			return "allocated";
+		}else if (status === 2){
+			return "accepted";
+		}else if (status === 3){
+			return "rejected";
+		}else if (status === 4){
+			return "canceled";
+		}
 	}
 
 </script>
