@@ -57,7 +57,7 @@ public class TestListShiftAllocationHistory {
 	public void testListShiftLocation() {
 		Shift shift = dao.getShiftAllocationHistory("1").get(0);
 		String loc = shift.getLocation();
-		assertEquals("location correct", location, loc);
+		assertEquals("location incorrect", location, loc);
 	}
 	
 	@Test
@@ -75,36 +75,7 @@ public class TestListShiftAllocationHistory {
 		String remark = shift.getRemark();
 		assertEquals("remark incorrect", "Pause", remark);
 	}
-//	@Test
-//	public void testListShiftDuration() {
-//		Shift shift = dao.getShiftAllocationHistory("1").get(0);
-//		double duration = shift.getDuration();
-//		assertEquals(duration, 5, 0.0);
-//
-//	}
-//
-//	@Test
-//	public void testListShiftLocation() {
-//		Shift shift = dao.getShiftAllocationHistory("1").get(0);
-//		String loc = shift.getLocation();
-//		assertEquals(loc, "KFC");
-//
-//	}
-//
-//	@Test
-//	public void testListShiftStaffAllocated() {
-//		Shift shift = dao.getShiftAllocationHistory("1").get(0);
-//		int staff = shift.getStaffAllocated();
-//		assertEquals(staff, 1);
-//
-//	}
-//
-//	@Test
-//	public void testListShiftStatus() {
-//		Shift shift = dao.getShiftAllocationHistory("1").get(0);
-//		int status = shift.getStatus();
-//		assertEquals(status, 1);
-//	}
+
 
 	@After
 	public void teraDown() {
