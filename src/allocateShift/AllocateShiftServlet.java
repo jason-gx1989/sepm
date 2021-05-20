@@ -1,6 +1,8 @@
 package allocateShift;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +26,21 @@ public class AllocateShiftServlet extends HttpServlet {
 		// Read field from view
 		String id = request.getParameter("id");
 		String staffAllocated = request.getParameter("staffAllocated");
-		service.allocateShift(Integer.parseInt(id), Integer.parseInt(staffAllocated));
+		try {
+			int rs =service.allocateShift(Integer.parseInt(id), Integer.parseInt(staffAllocated));
+			if(rs==0)
+			request.setAttribute("result", "staffId is not valid");
+			else if(rs==-1)
+			request.setAttribute("result", "workload exceeded! please change worklimit before proceeding");
+			else
+			request.setAttribute("result", "shift successfully allocated");	
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// Insert new notification into database
 		// TODO change the hard-coded arguments

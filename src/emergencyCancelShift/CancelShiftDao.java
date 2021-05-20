@@ -23,7 +23,7 @@ public class CancelShiftDao {
 		try {
 			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME,
 					DBConfig.DB_PASSWORD);
-			String sql = "UPDATE shift SET staffAllocated = " + null + " WHERE id = " + shiftId;
+			String sql = "UPDATE shift SET status = " + 4 + " WHERE id = " + shiftId;
 			Statement statement = conn.createStatement();
 			countrows = statement.executeUpdate(sql);
 			conn.close();

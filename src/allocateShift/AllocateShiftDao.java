@@ -93,5 +93,57 @@ public class AllocateShiftDao {
 			return countrows;
 		}
 	}
+	
+	public boolean isInStaff(int staffId) throws SQLException
+	{
+		Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+		String sql = "select * from staff where id ="+staffId;
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		if(rs.next())
+			return true;
+		else 
+			return false;
+		
+	}
+	
+	public boolean isExceedWorkload(int shiftId, int staffId) throws SQLException
+	{
+		Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+		String sql = "select * from shift where staffAllocated ="+staffId;
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		double sumworkload=0;
+		while (rs.next()) {
+			sumworkload+=rs.getDouble("duration");
+		}
+		double shiftduration = shiftduration(shiftId);
+		double staffworkload = staffworkload(staffId);
+        if(sumworkload+shiftduration>staffworkload)
+        	return true;
+        else
+        	return false;
+		
+		
+	}
+	
+	public double shiftduration(int shiftId) throws SQLException 
+	{
+		Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+		String sql ="select * from shift where id ="+shiftId;
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		return rs.getDouble("duration");
+	}
+	public double staffworkload(int staffId) throws SQLException 
+	{
+		Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+		String sql ="select * from staff where id ="+staffId;
+		PreparedStatement ps = conn.prepareStatement(sql);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		return rs.getDouble("workHourLimit");
+	}
 
 }

@@ -6,7 +6,11 @@
 <%@page import="allocateShift.*"%>
 <%@page import="changeLimit.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%
+String result = (String) request.getAttribute("result");
+if (result == null)
+	result = "";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,4 +102,10 @@
 	</div>
 
 </body>
+<script type="text/javascript" language="javascript">
+	
+	if ('<%=result%>' !== '') {
+		alert('<%=result%>');
+	}
+</script>
 </html>

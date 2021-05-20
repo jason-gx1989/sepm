@@ -25,17 +25,11 @@ public class CancelShiftServlet extends HttpServlet {
 
 		// Read field from view
 		String staffId = "1";
-		String id = request.getParameter("selectedShiftId");
-		ArrayList<ShiftManager> shiftmanagers = service.getShiftManagerList();
-		if (id != null) {
-			service.cancelShift(Integer.parseInt(id));
+		String shiftId = request.getParameter("selectedShiftId");		
+		if (shiftId != null) {
+			service.cancelShift(Integer.parseInt(shiftId));
 			// 发送邮件通知给每一位 Shiftmanager
-			for (ShiftManager shiftmanager : shiftmanagers) {
-				String address = shiftmanager.getEmail();
-				String head = "shift cancellation notification";
-				String content = "staffId" + staffId + "has cancelled shiftId" + id + "due to emergency";
-				EmailUtiils.sendEmail(address, head, content);
-			}
+            service.emailShiftManager(Integer.parseInt(shiftId), Integer.parseInt(staffId));
 		}
 		// Grab staff list from database
 		request.setAttribute("shiftList", service.getStaffShiftList(Integer.parseInt(staffId)));
