@@ -78,10 +78,11 @@ public class AllocateShiftDao {
 	}
 	
 	public int allocateShift(int shiftId, int staffId) {
-		int countrows=0;
+		int countrows= 0;
+		int status = 1;
 		try {			
 			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			String sql = "UPDATE shift SET staffAllocated = " + staffId + " WHERE id = " + shiftId;
+			String sql = "UPDATE shift SET staffAllocated = " + staffId + ", status = "+status+" WHERE id = " + shiftId;
 			Statement statement = conn.createStatement();
 			countrows =statement.executeUpdate(sql);			
 			conn.close();
