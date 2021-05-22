@@ -38,49 +38,34 @@
 		<form action="TestServlet" method="post">
 			<table border="0" align="center">
 
+
+				<tr>
+					<td><a href="addShiftManager.jsp">Add Shift Manager</a></td>
+				</tr>
+				<tr>
+					<td><a href="addStaff.jsp">Add Staff</a></td>
+				</tr>
+				<tr>
+					<td><a href="AddShift.jsp">Add Shift</a></td>
+				</tr>
 				<tr>
 					<td><a href="changePassword.jsp">change Password</a></td>
 				</tr>
+				<tr>
+					<td><a href="GetShiftServlet">Allocate Shift</a></td>
+				</tr>
+				<tr>
+					<td><a href="GetStaffAndShiftManagerServlet">Change Limit</a></td>
+				</tr>
+
+				<!-- <tr>
+					<td><a href="GetStaffProfileServlet?id=9">Change Staff
+							Profile</a></td>
+				</tr> -->
 			</table>
 		</form>
+
 	</div>
 
 </body>
-
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-<script>
-	function systemConsole() {
-		/* console.log("xxxxxxxx"); */
-		sendNotification();
-	}
-	setInterval(systemConsole, 2000);
-
-	function sendNotification() {
-		$.ajax({
-			url : 'NotifyShiftServlet',
-			data : {
-
-			},
-			type : "post",
-			success : function(data) {
-				/* alert(data); */
-				console.log(data);
-				if (data !== '-1') {
-					openwindow = window.open("", "newwin",
-							"height=250, width=250,toolbar=no,scrollbars="
-									+ scroll + ",menubar=no");
-
-					openwindow.document.write("<title>notice</title>")
-					openwindow.document.write("<body bgcolor=#ffffff>")
-					openwindow.document.write(data)
-					openwindow.document.write("</body>")
-					openwindow.document.write("</html>")
-					openwindow.document.close();
-				}
-			}
-		});
-
-	}
-</script>
-
 </html>
