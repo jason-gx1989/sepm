@@ -18,12 +18,12 @@ public class CancelShiftDao {
 
 		// TODO 这里不需要把staffAllocated置为空，应该更新shift表中status字段，具体的值请参阅Shift
 		// entity中status的注释。
-
+        int status = 4;
 		int countrows = 0;
 		try {
 			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME,
 					DBConfig.DB_PASSWORD);
-			String sql = "UPDATE shift SET status = " + 4 + " WHERE id = " + shiftId;
+			String sql = "UPDATE shift SET status = " + status + " WHERE id = " + shiftId;
 			Statement statement = conn.createStatement();
 			countrows = statement.executeUpdate(sql);
 			conn.close();
