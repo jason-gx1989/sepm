@@ -6,7 +6,7 @@ import addstaff.StaffService;
 import changeLimit.ChangeLimitService;
 import common.junitUtils.StaffTestDao;
 
-public class changeLimitTest {
+public class ChangeLimitTest {
 
 	private ChangeLimitService changeLimitservice;
 	private StaffService staffService;

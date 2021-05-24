@@ -22,7 +22,7 @@ public class StaffService {
 		staff.setMobileNumber(mobileNumber);
 		staff.setEmail(email);
 		staff.setPreferredName(preferredName);
-		staff.setWorkHourLimit(5.6); // default value
+		staff.setWorkHourLimit(40.0); // default value
 		staff.setHomeAddress(homeAddress);
 
 		return staffDao.createStaff(staff);
