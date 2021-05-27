@@ -20,6 +20,7 @@ public class LoginTest {
 
 	@Before
 	public void initialization() {
+		//
 
 		try {
 			Connection conn = (Connection) DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME,
