@@ -29,7 +29,7 @@
 </head>
 <body>
 	<%
-	String msg = (String) request.getAttribute("s");
+	String msg = (String) request.getAttribute("result");
 		if (null == msg) {
 			msg = "";
 		}
@@ -54,14 +54,6 @@
 				<tr>
 					<td align="right">Location:</td>
 					<td><input type="text" name="location" /></td>
-				</tr>
-				<tr>
-					<td align="right">Staff Allocated:</td>
-					<td><input type="text" name="staffAllocated" /></td>
-				</tr>
-				<tr>
-					<td align="right">Status:</td>
-					<td><input type="text" name="status" /></td>
 				</tr>
 				<tr>
 					<td align="right">Remark:</td>

@@ -28,22 +28,22 @@ public class AddShiftServlet extends HttpServlet {
 		String result = service.addShift(startTime, endTime, duration, location, remark);
 		if ("01".equals(result)) {
 			String s = "Invalid Time Format";
-			request.setAttribute("s", s);
+			request.setAttribute("result", s);
 			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
 		}
 		if ("02".equals(result)) {
 			String s = "Invalid Time Format";
-			request.setAttribute("s", s);
+			request.setAttribute("result", s);
 			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
 		}
 		if ("03".equals(result)) {
 			String s = "Invalid Duration Format";
-			request.setAttribute("s", s);
+			request.setAttribute("result", s);
 			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
 		}
 		if ("04".equals(result)) {
 			String s = "Location can't be null!";
-			request.setAttribute("s", s);
+			request.setAttribute("result", s);
 			request.getRequestDispatcher("/AddShift.jsp").forward(request, response);
 		}
 

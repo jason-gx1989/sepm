@@ -32,9 +32,12 @@ public class AddShiftService {
 		}
 		
 		//判断input_location不能为空
-		String location = input_location;
-		if(location == null) {
+		String location;
+		if(input_location == null) {
 			return "04";
+		}
+		else {
+			location = input_location;
 		}
 		
 		String remark = input_remark;
