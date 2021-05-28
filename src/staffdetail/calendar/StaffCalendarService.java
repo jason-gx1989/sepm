@@ -26,7 +26,6 @@ public class StaffCalendarService {
 			int firstDate = startDate;
 			int lastDate = endDate;
 
-			// 第一天与最后一天跨月
 			if (startMonth < month) {
 				firstDate = 1;
 			}
@@ -50,14 +49,8 @@ public class StaffCalendarService {
 
 			}
 
-//			System.out.println("firstDate >> " + firstDate);
-//
-//			System.out.println("lastDate >> " + lastDate);
-
 			for (int i = firstDate; i <= lastDate; i++) {
-//				String date = String.valueOf(firstDate);
 				result = buildDateString(String.valueOf(i), result);
-//				System.out.println("result >> " + result);
 			}
 
 			System.out.println();

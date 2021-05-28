@@ -16,8 +16,6 @@ public class CSDGetListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Read field from view
-
 		// Grab staff list from database
 		request.setAttribute("shiftList", service.getShiftList());		
 

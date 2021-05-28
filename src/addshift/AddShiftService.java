@@ -21,7 +21,7 @@ public class AddShiftService {
 			return "02";
 		}
 		
-		//判断input_duration只能为数字（包括小数）
+		// check if duration is numeric value
 		double duration;
 		if(Utils.isNumeric(input_duration) == true) {
 			duration = Double.valueOf(input_duration);
@@ -31,7 +31,7 @@ public class AddShiftService {
 			return "03";
 		}
 		
-		//判断input_location不能为空
+		// check if duration is empty
 		String location;
 		if(input_location == null) {
 			return "04";

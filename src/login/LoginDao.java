@@ -24,7 +24,6 @@ public class LoginDao {
 			while (rs.next()) {
 				staff = new Staff();
 				staff.setId(rs.getInt("id"));
-//				staff.setCreateTIme(createTIme);
 				staff.setEmail(rs.getString("email"));
 				staff.setPassword(rs.getString("password"));
 			}
@@ -52,7 +51,6 @@ public class LoginDao {
 			while (rs.next()) {
 				shiftManager = new ShiftManager();
 				shiftManager.setId(rs.getInt("id"));
-//				staff.setCreateTIme(createTIme);
 				shiftManager.setEmail(rs.getString("email"));
 				shiftManager.setPassword(rs.getString("password"));
 			}

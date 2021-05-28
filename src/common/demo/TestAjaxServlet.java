@@ -20,11 +20,8 @@ public class TestAjaxServlet extends HttpServlet {
 
 		System.out.println(userid);
 
-//		request.setAttribute("notice", "ttttt");
-
-		response.setContentType("text/plain"); // Set content type of the response so that jQuery knows what it can
-												// expect.
-		response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write("ttttttt");
 
 	}

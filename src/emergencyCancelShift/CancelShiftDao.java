@@ -15,9 +15,6 @@ import entity.ShiftManager;
 public class CancelShiftDao {
 
 	public int cancelShift(int shiftId) {
-
-		// TODO 这里不需要把staffAllocated置为空，应该更新shift表中status字段，具体的值请参阅Shift
-		// entity中status的注释。
         int status = 4;
 		int countrows = 0;
 		try {

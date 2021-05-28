@@ -5,14 +5,12 @@ import java.sql.Date;
 public class Shift {
 
 	private int id;
-//	private Date startTime;
-//	private Date endTime;
 	private Date startTime;
 	private Date endTime;
 	private double duration;
 	private String location;
-	private int staffAllocated;// 外键，指向staff
-	private int status;// 状态：0--初始，1--已分配，2--接受，3--拒绝，4--紧急取消
+	private int staffAllocated;
+	private int status;		// 0 - initial, 1 - allocated, 2 - accepted, 3 - rejected, 4 - cancelled
 	private String remark;
 
 	public int getId() {

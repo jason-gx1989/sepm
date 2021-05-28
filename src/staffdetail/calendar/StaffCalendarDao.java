@@ -43,8 +43,6 @@ public class StaffCalendarDao {
 			ps.setInt(5, staffId);
 			ResultSet rs = ps.executeQuery();
 			
-//			 System.out.println("staffId >> " + staffId);
-//			 System.out.println("sql >> " + sql);
 			List<StaffCalendarPojo> pojoList = new ArrayList<StaffCalendarPojo>();
 			while (rs.next()) {
 				StaffCalendarPojo pojo = new StaffCalendarPojo();

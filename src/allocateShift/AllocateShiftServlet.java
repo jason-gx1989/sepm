@@ -35,15 +35,12 @@ public class AllocateShiftServlet extends HttpServlet {
 			else
 			request.setAttribute("result", "shift successfully allocated");	
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		// Insert new notification into database
-		// TODO change the hard-coded arguments
 		noticeService.insertNotice("1", 1, Integer.parseInt(id));
 		
 		// Grab staff list from database

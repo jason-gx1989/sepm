@@ -11,8 +11,6 @@ public class listShiftAllocationHistoryDao {
 
 	public ArrayList<Shift> getShiftAllocationHistory(int staffID) {
 
-		// TODO status字段前台直接展示文字，不要把数字显示出来。staffAllocated也是，用left join关联查询。
-
 		try {
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			String sql = "select * from shift where staffAllocated = " + staffID;

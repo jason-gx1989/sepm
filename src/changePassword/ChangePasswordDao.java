@@ -28,14 +28,20 @@ public class ChangePasswordDao {
 		} catch (SQLException se) {
 			se.printStackTrace();
 		}
+		
+		// check empty password
 		if (password.equals("")){
-			return 0;  			//没有这个人
+			return 0; 
 		}
+		
+		// check incorrect passeword
 		if (!password.equals(oldPassword)){
 			System.out.println("old" + oldPassword);
 			System.out.println("pass" + password);
-			return -1;         //密码不正确
-		}else {
+			return -1; 
+		}
+		
+		else {
 			String sql = "UPDATE staff SET password = " + "'" + newPassword + "'" + " WHERE fullName = " + "'" + fullName + "'" ;
 			DBExecuteUtils.update(sql);
 			return 1;

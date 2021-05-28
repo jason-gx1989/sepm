@@ -7,7 +7,7 @@ public class User {
 	private int id;
 	private String fullName;
 	private String password;
-	private int isPasswordUpdated;// 0-no,1--yes
+	private int isPasswordUpdated;// 0 - no, 1 - yes
 	private String mobileNumber;
 	private String email;
 	private Date createTIme;

@@ -33,7 +33,8 @@ public ArrayList<Shift> getShiftList() {
 		
 		try {
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-			//只能更改未被分配的shift duration
+			
+			// only the duration of unallocated shift can be changed
 			String sql = "select * from shift where staffAllocated is null";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();

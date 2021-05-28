@@ -17,8 +17,7 @@ public class CancelShiftServlet extends HttpServlet {
 
 	CancelShiftService service = new CancelShiftService();
 
-	// TODO Servlet只负责收发参数，业务逻辑应该放在service类中。
-
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,9 +27,11 @@ public class CancelShiftServlet extends HttpServlet {
 		String shiftId = request.getParameter("selectedShiftId");		
 		if (shiftId != null) {
 			service.cancelShift(Integer.parseInt(shiftId));
-			// 发送邮件通知给每一位 Shiftmanager
+
+			// Send email to staff manager
             service.emailShiftManager(Integer.parseInt(shiftId), Integer.parseInt(staffId));
 		}
+		
 		// Grab staff list from database
 		request.setAttribute("shiftList", service.getStaffShiftList(Integer.parseInt(staffId)));
 
