@@ -16,9 +16,10 @@ public class listShiftAllocationHistoryServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// get staff id
-		String id_pass = req.getParameter("id"); //用户登录后直接pass id
+		// String id_pass = req.getParameter("id"); //用户登录后直接pass id
 		// get shifts from database
-		int id = Integer.parseInt(id_pass);
+		//int id = Integer.parseInt(id_pass);
+		int id = 1;
 
 		req.setAttribute("shiftList", service.listShiftAllocationHistory(id));
 
