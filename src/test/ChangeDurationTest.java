@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import changeShiftDuration.ChangeShiftDurationService;
 import common.configration.DBConfig;
+import common.junitUtils.GetLastItemDao;
 import emergencyCancelShift.CancelShiftService;
 
 public class ChangeDurationTest {
@@ -33,16 +34,17 @@ public class ChangeDurationTest {
 	public void setUp() throws Exception {
 		conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 		service = new ChangeShiftDurationService();
+		GetLastItemDao dao = new GetLastItemDao();
 		Statement statement = conn.createStatement();
-		statement.executeUpdate("INSERT INTO `shift` (`id`) VALUES ('5')");		
-		statement.executeUpdate("UPDATE shift SET duration = 5.0 WHERE id = 5");
-		shiftId = 5;
+		shiftId = dao.getLastItemShiftId();
+		statement.executeUpdate("INSERT INTO `shift` (`status`) VALUES ('0')");	
+		statement.executeUpdate("UPDATE shift SET duration = 5.0 WHERE id = "+shiftId);		
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Statement statement = conn.createStatement();		
-		statement.executeUpdate("DELETE FROM `shift` WHERE (`id` = '5')");
+		Statement statement = conn.createStatement();				
+		statement.executeUpdate("DELETE FROM `shift` WHERE (`id` = '"+shiftId+"')");
 		conn.close();
 	}
 

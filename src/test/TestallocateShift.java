@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import allocateShift.AllocateShiftService;
 import common.configration.DBConfig;
+import common.junitUtils.GetLastItemDao;
 
 public class TestallocateShift {
 	public Connection conn;
@@ -27,11 +28,12 @@ public class TestallocateShift {
 	public void setUp() throws Exception {
 		conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 		service = new AllocateShiftService();
+		GetLastItemDao dao = new GetLastItemDao();
 		Statement statement = conn.createStatement();
-		statement.executeUpdate("INSERT INTO `shift` (`id`) VALUES ('5')");
-		statement.executeUpdate("INSERT INTO `staff` (`id`) VALUES ('5')");
-		shiftId = 5;
-		staffId = 5;
+		statement.executeUpdate("INSERT INTO `shift` (`status`) VALUES ('0')");
+		statement.executeUpdate("INSERT INTO `staff` (`fullName`) VALUES ('testee')");
+		shiftId = dao.getLastItemShiftId();
+		staffId = dao.getLastItemStaffId();
 		
 	}
 
@@ -39,8 +41,8 @@ public class TestallocateShift {
 	//delete test data
 	public void tearDown() throws Exception {
 		Statement statement = conn.createStatement();
-		statement.executeUpdate("DELETE FROM `staff` WHERE (`id` = '5')");
-		statement.executeUpdate("DELETE FROM `shift` WHERE (`id` = '5')");
+		statement.executeUpdate("DELETE FROM `staff` WHERE (`id` = '"+staffId+"')");
+		statement.executeUpdate("DELETE FROM `shift` WHERE (`id` = '"+shiftId+"')");
 		conn.close();
 	}
 
