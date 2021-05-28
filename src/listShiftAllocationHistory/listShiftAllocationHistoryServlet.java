@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/listShiftAllocationHistoryServlet") // TODO 名字太啰嗦了
+@WebServlet("/listShiftAllocationHistoryServlet")
 public class listShiftAllocationHistoryServlet extends HttpServlet {
 
 	listShiftAllocationHistoryService service = new listShiftAllocationHistoryService();
@@ -16,9 +16,9 @@ public class listShiftAllocationHistoryServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// get staff id
-//		String id = req.getParameter("id"); 用户登录后直接pass id
+		String id_pass = req.getParameter("id"); //用户登录后直接pass id
 		// get shifts from database
-		String id = "1";
+		int id = Integer.parseInt(id_pass);
 
 		req.setAttribute("shiftList", service.listShiftAllocationHistory(id));
 

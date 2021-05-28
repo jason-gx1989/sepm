@@ -10,10 +10,13 @@ import org.junit.Before;
 import org.junit.Test;
 
 import addshift.AddShiftService;
+import addstaff.StaffService;
 import allocateShift.AllocateShiftService;
 import common.configration.DBConfig;
 import common.junitUtils.AddShiftTestDao;
+import common.utils.DBExecuteUtils;
 import entity.Shift;
+import entity.Staff;
 import listShiftAllocationHistory.listShiftAllocationHistoryDao;
 
 public class TestListShiftAllocationHistory {
@@ -24,6 +27,8 @@ public class TestListShiftAllocationHistory {
 	public AddShiftService addShiftService;
 	public AddShiftTestDao addShiftTestDao;
 	public String location;
+	public StaffService staffService;
+	public Staff staff;
 	
 	public int shiftId;
 	public int staffId;
@@ -36,44 +41,89 @@ public class TestListShiftAllocationHistory {
 		dao = new listShiftAllocationHistoryDao();
 		addShiftService = new AddShiftService();
 		addShiftTestDao = new AddShiftTestDao();
-	
+		staffService = new StaffService();
+        staff = new Staff();
+        
+        staff.setFullName("test");
+        staff.setPassword("123234");
+        staff.setMobileNumber("13567765785");
+        staff.setEmail("32354346@gmail.com");
+        staff.setPreferredName("alice");
+        staff.setHomeAddress("wewqrwe");
+
+        staffService.createStaff(staff.getFullName(),staff.getPassword(), staff.getMobileNumber(), staff.getEmail(),staff.getPreferredName(), staff.getHomeAddress());
+        String sql = " select * from staff where mobileNumber  = " + staff.getMobileNumber();
+        Staff rs = DBExecuteUtils.queryStaff(sql);
+        staffId = rs.getId();
 		location = "MD";
+		
+		
+	}
+	
+	@Test
+	public void testListShiftDuration() throws SQLException {
 		addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
 		shiftId = addShiftTestDao.getShiftByLoc(location).getId();
-		//query staff id
-		service1.allocateShift(shiftId, 1);
+		
+		service1.allocateShift(shiftId, staffId);
+		double duration = 0;
+		for(Shift shift : dao.getShiftAllocationHistory(staffId)) {
+			if(shift.getLocation().equals(location)) {
+				duration = shift.getDuration();
+			}
+		}
+		
+		assertEquals(5, duration,0.0);
 		
 	}
 	
 	@Test
-	public void testListShiftDuration() {
-		Shift shift = dao.getShiftAllocationHistory("1").get(0);
-		double duration = shift.getDuration();
-		assertEquals("duration incorrect", 5, duration,0.0);
+	public void testListShiftLocation() throws SQLException {
 		
+		addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
+		shiftId = addShiftTestDao.getShiftByLoc(location).getId();
+		
+		service1.allocateShift(shiftId, staffId);
+		String loc = null;
+		for(Shift shift : dao.getShiftAllocationHistory(staffId)) {
+			if(shift.getLocation().equals(location)) {
+				loc = shift.getLocation();
+			}
+		}
+		assertEquals(location, loc);
 	}
 	
 	@Test
-	public void testListShiftLocation() {
-		Shift shift = dao.getShiftAllocationHistory("1").get(0);
-		String loc = shift.getLocation();
-		assertEquals("location incorrect", location, loc);
-	}
-	
-	@Test
-	public void testListShiftStaffAllocated() {
-		Shift shift = dao.getShiftAllocationHistory("1").get(0);
-		int staff = shift.getStaffAllocated();
-		assertEquals("staffAllocated incorrect", 1, staff);
+	public void testListShiftStaffAllocated() throws SQLException {
+		addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
+		shiftId = addShiftTestDao.getShiftByLoc(location).getId();
+		
+		service1.allocateShift(shiftId, staffId);
+		int staff = 0;
+		for(Shift shift : dao.getShiftAllocationHistory(staffId)) {
+			if(shift.getLocation().equals(location)) {
+				staff = shift.getStaffAllocated();
+			}
+		}
+		assertEquals(staffId, staff);
 
 	}
 	
 	
 	@Test
-	public void testListShiftRemark() {
-		Shift shift = dao.getShiftAllocationHistory("1").get(0);
-		String remark = shift.getRemark();
-		assertEquals("remark incorrect", "Pause", remark);
+	public void testListShiftRemark() throws SQLException {
+		addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
+		shiftId = addShiftTestDao.getShiftByLoc(location).getId();
+		
+		service1.allocateShift(shiftId, staffId);
+		String remark = null;
+		for(Shift shift : dao.getShiftAllocationHistory(staffId)) {
+			if(shift.getLocation().equals(location)) {
+				remark = shift.getRemark();
+			}
+		}
+
+		assertEquals("Pause", remark);
 	}
 
 
@@ -81,6 +131,8 @@ public class TestListShiftAllocationHistory {
 	public void teraDown() {
 		
 		addShiftTestDao.deleteByLoc(location);
+		String sql = " delete from staff where mobileNumber  = 13567765785";
+        DBExecuteUtils.delete(sql);
 	}
 
 }

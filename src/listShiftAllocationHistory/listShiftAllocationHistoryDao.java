@@ -9,7 +9,7 @@ import entity.Staff;
 
 public class listShiftAllocationHistoryDao {
 
-	public ArrayList<Shift> getShiftAllocationHistory(String staffID) {
+	public ArrayList<Shift> getShiftAllocationHistory(int staffID) {
 
 		// TODO status字段前台直接展示文字，不要把数字显示出来。staffAllocated也是，用left join关联查询。
 
