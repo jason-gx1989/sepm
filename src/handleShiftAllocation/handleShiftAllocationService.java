@@ -21,7 +21,7 @@ public class handleShiftAllocationService {
 		handleShiftAllocationDao.changeShiftStatus(id, staffId, 3);
 	}
 
-	public ArrayList<Shift> getStaffList() {
+	public ArrayList<Shift> getShiftList() {
 
 		return handleShiftAllocationDao.getShiftList();
 	}

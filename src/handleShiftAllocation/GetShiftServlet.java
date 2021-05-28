@@ -17,7 +17,7 @@ public class GetShiftServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// Grab staff list from database
-		request.setAttribute("shiftList", service.getStaffList());
+		request.setAttribute("shiftList", service.getShiftList());
 
 		request.getRequestDispatcher("/handleAllocateShift.jsp").forward(request, response);
 	}
