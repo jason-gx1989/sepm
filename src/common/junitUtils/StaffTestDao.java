@@ -30,6 +30,7 @@ public class StaffTestDao {
 				result.setEmail(rs.getString("email"));
 				result.setHomeAddress(rs.getString("homeAddress"));
 				result.setWorkHourLimit(rs.getDouble("workHourLimit"));
+				result.setPassword(rs.getString("password"));
 			}
 			
 			conn.close();

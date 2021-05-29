@@ -36,17 +36,17 @@ public class ChangePasswordTest {
         int test4 = changePasswordService.changePassword("test99", "zXC1230.$", "1234A6789"); // don't contain uppercase  letter
         int test5 = changePasswordService.changePassword("test99", "zXC1230.$", "123Az6789"); // don't contain special characters
         int test6 = changePasswordService.changePassword("test98", "zXC1230.$", "123Az6789.$"); // The fullName has not been registered
-        int test7 = changePasswordService.changePassword("test98", "wqewrret", "123Az6789.$"); // The old password is incorrect
-        int test8 = changePasswordService.changePassword("test98", "zXC1230.$", "123Az6789.$");
-        Staff test9 = staffTestDao.getByName("test2");
+        int test7 = changePasswordService.changePassword("test99", "wqewrret", "123Az6789.$"); // The old password is incorrect
+        int test8 = changePasswordService.changePassword("test99", "zXC1230.$", "123Az6789.$");
+        Staff test9 = staffTestDao.getByName("test99");
         Assert.assertEquals(-2, test1);
         Assert.assertEquals(-2, test2);
         Assert.assertEquals(-2, test3);
         Assert.assertEquals(-2, test4);
         Assert.assertEquals(-2, test5);
-        Assert.assertEquals(-2, test6);
-        Assert.assertEquals(-2, test7);
-        Assert.assertEquals(0, test8);
+        Assert.assertEquals(0, test6);
+        Assert.assertEquals(-1, test7);
+        Assert.assertEquals(1, test8);
         Assert.assertEquals("123Az6789.$", test9.getPassword());
     }
 }

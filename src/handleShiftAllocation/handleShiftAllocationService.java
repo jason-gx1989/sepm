@@ -26,4 +26,9 @@ public class handleShiftAllocationService {
 		return handleShiftAllocationDao.getShiftList();
 	}
 
+	public Shift getShift(int id) {
+
+		return handleShiftAllocationDao.getShift(id);
+	}
+
 }

@@ -61,5 +61,38 @@ public class handleShiftAllocationDao {
 		return null;
 	}
 
+	public Shift getShift(int id) {
+
+		try {
+			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+			String sql = "select * from shift where id = " + id;
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			Shift shift = new Shift();
+			while (rs.next()) {
+
+				shift.setId(rs.getInt("id"));
+				shift.setStaffAllocated(rs.getInt("staffAllocated"));
+				shift.setStartTime(rs.getDate("startTime"));
+				shift.setEndTime(rs.getDate("endTime"));
+				shift.setDuration(rs.getDouble("duration"));
+				shift.setLocation(rs.getString("location"));
+				shift.setStatus(rs.getInt("status"));
+				shift.setRemark(rs.getString("remark"));
+
+			}
+
+			conn.close();
+			ps.close();
+
+			return shift;
+		}
+		catch (SQLException se) {
+			se.printStackTrace();
+		}
+
+		return null;
+	}
+
 
 }

@@ -19,6 +19,8 @@ public class HandleShiftAllocationTest {
 
     private handleShiftAllocationService handleShiftAllocationService;
     private Shift shift;
+    private int shiftId;
+
 
 
     @Before
@@ -26,18 +28,19 @@ public class HandleShiftAllocationTest {
 
         String location = "MD";
         AddShiftService addShiftService = new AddShiftService();
-        addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
+  //      addShiftService.addShift("2021-04-25 00:00:00", "2021-04-26 00:00:00", "5", location, "Pause");
         handleShiftAllocationService = new handleShiftAllocationService();
         ArrayList<Shift> shiftList = handleShiftAllocationService.getShiftList();
         shift = shiftList.get(0);
+        shiftId = shift.getId();
+
 
     }
 
     @Test
     public void testAcceptShiftAllocation(){
-        handleShiftAllocationService.AcceptAllocation(shift.getId(), shift.getStaffAllocated());
-        ArrayList<Shift> shiftList = handleShiftAllocationService.getShiftList();
-        shift = shiftList.get(0);
+        handleShiftAllocationService.AcceptAllocation(shiftId, shift.getStaffAllocated());
+        shift = handleShiftAllocationService.getShift(shift.getId());
         Assert.assertEquals(shift.getStatus(), 2);
 
 
@@ -45,10 +48,9 @@ public class HandleShiftAllocationTest {
 
     @Test
     public void testRejectShiftAllocation(){
-        handleShiftAllocationService.RejectAllocation(shift.getId(), shift.getStaffAllocated());
-        ArrayList<Shift> shiftList = handleShiftAllocationService.getShiftList();
-        shift = shiftList.get(0);
-        Assert.assertEquals(shift.getStatus(), 2);
+        handleShiftAllocationService.RejectAllocation(shiftId, shift.getStaffAllocated());
+        shift = handleShiftAllocationService.getShift(shift.getId());
+        Assert.assertEquals(shift.getStatus(), 3);
 
     }
 
